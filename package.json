@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && touch dist/.nojekyll && git add -f dist && git commit -m 'Build for deployment' && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
