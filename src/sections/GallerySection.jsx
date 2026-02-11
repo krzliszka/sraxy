@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { Camera, Heart, Sparkles, X, ChevronLeft, ChevronRight, Upload } from 'lucide-react';
 
-// Placeholder photos - replace with real ones
+// Placeholder photos - INSTRUKCJA:
+// 1. Dodaj zdjęcia do folderu public/photos/ (np. 1.jpg, 2.jpg, 3.jpg)
+// 2. Zaktualizuj tę tablicę swoimi zdjęciami:
 const photos = [
-  { id: 1, src: '/photos/photo1.jpg', alt: 'Nasze zdjęcie 1' },
-  { id: 2, src: '/photos/photo2.jpg', alt: 'Nasze zdjęcie 2' },
-  { id: 3, src: '/photos/photo3.jpg', alt: 'Nasze zdjęcie 3' },
-  { id: 4, src: '/photos/photo4.jpg', alt: 'Nasze zdjęcie 4' },
-  { id: 5, src: '/photos/photo5.jpg', alt: 'Nasze zdjęcie 5' },
-  { id: 6, src: '/photos/photo6.jpg', alt: 'Nasze zdjęcie 6' },
+  { id: 1, src: '/photos/1.jpg', alt: 'Paula i Artur - zdjęcie 1' },
+  { id: 2, src: '/photos/2.jpg', alt: 'Paula i Artur - zdjęcie 2' },
+  { id: 3, src: '/photos/3.jpg', alt: 'Paula i Artur - zdjęcie 3' },
+  { id: 4, src: '/photos/4.jpg', alt: 'Paula i Artur - zdjęcie 4' },
+  { id: 5, src: '/photos/5.jpg', alt: 'Paula i Artur - zdjęcie 5' },
+  { id: 6, src: '/photos/6.jpg', alt: 'Paula i Artur - zdjęcie 6' },
 ];
+// 3. Odkomentuj tag <img> poniżej (linia ~85)
+// 4. Zakomentuj lub usuń placeholder div
 
 export default function GallerySection() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -53,19 +57,21 @@ export default function GallerySection() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {photos.map((photo) => (
                 <button
-                  key={photo.id}
-                  onClick={() => openLightbox(photo)}
-                  className="group relative aspect-square bg-sage/20 rounded-2xl overflow-hidden border border-chocolate/10 hover:border-cranberry/30 transition-colors"
-                >
-                  {/* Placeholder - replace with real images */}
+                  key={LACEHOLDER - Pokaże się dopóki nie dodasz prawdziwych zdjęć */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <Camera className="w-12 h-12 text-chocolate/30 mx-auto mb-2" />
                       <p className="font-serif text-sm text-chocolate/40">Zdjęcie {photo.id}</p>
+                      <p className="font-serif text-xs text-chocolate/30 mt-1 px-4">Dodaj {photo.src}</p>
                     </div>
                   </div>
                   
-                  {/* Uncomment when you have real photos:
+                  {/* ODKOMENTUJ to gdy dodasz zdjęcia do public/photos/:
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => e.target.style.display = 'none'}
                   <img
                     src={photo.src}
                     alt={photo.alt}
