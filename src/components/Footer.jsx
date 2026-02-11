@@ -1,16 +1,7 @@
+import { Link } from 'react-router-dom';
 import { Bird, Heart } from 'lucide-react';
 
 export default function Footer() {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="py-16 px-4 bg-cream border-t border-chocolate/10">
       <div className="max-w-4xl mx-auto">
@@ -31,21 +22,21 @@ export default function Footer() {
 
         {/* Links */}
         <div className="flex flex-wrap justify-center gap-6 mb-8">
-          <button onClick={() => scrollToSection('home')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          <Link to="/" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             Strona główna
-          </button>
-          <button onClick={() => scrollToSection('historia')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          </Link>
+          <Link to="/nasza-historia" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             Nasza historia
-          </button>
-          <button onClick={() => scrollToSection('szczegoly')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          </Link>
+          <Link to="/szczegoly" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             Szczegóły
-          </button>
-          <button onClick={() => scrollToSection('rsvp')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          </Link>
+          <Link to="/rsvp" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             RSVP
-          </button>
-          <a href="/#/zaproszenie" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          </Link>
+          <Link to="/zaproszenie" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             Zaproszenie
-          </a>
+          </Link>
         </div>
 
         {/* Decorative wave */}
