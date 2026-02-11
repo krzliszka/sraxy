@@ -53,48 +53,50 @@ export default function GallerySection() {
           Chwile, które chcemy z Wami dzielić.
         </p>
       </div>
-          {photos.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {photos.map((photo) => (
-                <button
-                  key={LACEHOLDER - Pokaże się dopóki nie dodasz prawdziwych zdjęć */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <Camera className="w-12 h-12 text-chocolate/30 mx-auto mb-2" />
-                      <p className="font-serif text-sm text-chocolate/40">Zdjęcie {photo.id}</p>
-                      <p className="font-serif text-xs text-chocolate/30 mt-1 px-4">Dodaj {photo.src}</p>
-                    </div>
+
+      {/* Gallery Grid */}
+      <div className="max-w-6xl mx-auto">
+        {photos.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {photos.map((photo) => (
+              <button
+                key={photo.id}
+                onClick={() => openLightbox(photo)}
+                className="group relative aspect-square bg-sage/20 rounded-2xl overflow-hidden border border-chocolate/10 hover:border-cranberry/30 transition-colors"
+              >
+                {/* PLACEHOLDER - Pokaże się dopóki nie dodasz prawdziwych zdjęć */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <Camera className="w-12 h-12 text-chocolate/30 mx-auto mb-2" />
+                    <p className="font-serif text-sm text-chocolate/40">Zdjęcie {photo.id}</p>
+                    <p className="font-serif text-xs text-chocolate/30 mt-1 px-4">Dodaj {photo.src}</p>
                   </div>
-                  
-                  {/* ODKOMENTUJ to gdy dodasz zdjęcia do public/photos/:
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => e.target.style.display = 'none'}
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  */}
-                  
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-cranberry/0 group-hover:bg-cranberry/10 transition-colors flex items-center justify-center">
-                    <Heart className="w-8 h-8 text-cream opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <Camera className="w-16 h-16 text-chocolate/30 mx-auto mb-4" />
-              <p className="font-serif text-xl text-graphite/60">
-                Zdjęcia już niedługo...
-              </p>
-            </div>
-          )}
-        </div>
+                </div>
+                
+                {/* ODKOMENTUJ to gdy dodasz zdjęcia do public/photos/:
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => e.target.style.display = 'none'}
+                />
+                */}
+                
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-cranberry/0 group-hover:bg-cranberry/10 transition-colors flex items-center justify-center">
+                  <Heart className="w-8 h-8 text-cream opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <Camera className="w-16 h-16 text-chocolate/30 mx-auto mb-4" />
+            <p className="font-serif text-xl text-graphite/60">
+              Zdjęcia już niedługo...
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Upload CTA */}

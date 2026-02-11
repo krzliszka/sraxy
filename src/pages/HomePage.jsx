@@ -25,7 +25,7 @@ export default function HomePage() {
     </div>
   );
 }
-        {/* Decorative corners */}
+
         <div className="absolute top-24 left-8 w-16 h-16 border-t-2 border-l-2 border-chocolate/30 rounded-tl-lg hidden sm:block" />
         <div className="absolute top-24 right-8 w-16 h-16 border-t-2 border-r-2 border-chocolate/30 rounded-tr-lg hidden sm:block" />
         <div className="absolute bottom-8 left-8 w-16 h-16 border-b-2 border-l-2 border-chocolate/30 rounded-bl-lg hidden sm:block" />
