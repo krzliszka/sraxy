@@ -1,11 +1,30 @@
-import { Link } from 'react-router-dom';
-import { Heart, Calendar, MapPin, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
+import HeroSection from '../sections/HeroSection';
+import StorySection from '../sections/StorySection';
+import DetailsSection from '../sections/DetailsSection';
+import RSVPSection from '../sections/RSVPSection';
+import GiftsSection from '../sections/GiftsSection';
+import GallerySection from '../sections/GallerySection';
 
 export default function HomePage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-20 stripe-pattern overflow-hidden">
+    <div className="min-h-screen bg-cream">
+      <Navigation />
+      
+      <main className="pt-16">
+        <HeroSection />
+        <StorySection />
+        <DetailsSection />
+        <RSVPSection />
+        <GiftsSection />
+        <GallerySection />
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}
         {/* Decorative corners */}
         <div className="absolute top-24 left-8 w-16 h-16 border-t-2 border-l-2 border-chocolate/30 rounded-tl-lg hidden sm:block" />
         <div className="absolute top-24 right-8 w-16 h-16 border-t-2 border-r-2 border-chocolate/30 rounded-tr-lg hidden sm:block" />
