@@ -16,7 +16,7 @@ import {
 
 export default function InvitationPage() {
   const handleClose = () => {
-    window.location.href = '/#home';
+    window.location.href = '/sraxy/#/';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
