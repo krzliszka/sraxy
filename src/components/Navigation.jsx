@@ -9,6 +9,7 @@ const navLinks = [
   { to: '#rsvp', label: 'RSVP' },
   { to: '#prezenty', label: 'Prezenty' },
   { to: '#galeria', label: 'Galeria' },
+  { to: '/zaproszenie', label: 'Zaproszenie' },
 ];
 
 export default function Navigation() {
@@ -32,7 +33,7 @@ export default function Navigation() {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navLinks.map(link => link.to.replace('#', ''));
+      const sections = navLinks.filter(link => link.to.startsWith('#')).map(link => link.to.replace('#', ''));
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -64,20 +65,34 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.to}
-                href={link.to}
-                onClick={(e) => scrollToSection(e, link.to)}
-                className={`font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
-                  activeSection === link.to.replace('#', '')
-                    ? 'text-cranberry font-medium'
-                    : 'text-graphite/70'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              if (link.to === '/zaproszenie') {
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="font-serif text-sm tracking-wide transition-colors hover:text-cranberry text-graphite/70"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+              return (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  onClick={(e) => scrollToSection(e, link.to)}
+                  className={`font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
+                    activeSection === link.to.replace('#', '')
+                      ? 'text-cranberry font-medium'
+                      : 'text-graphite/70'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -94,20 +109,37 @@ export default function Navigation() {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-chocolate/10">
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.to}
-                  href={link.to}
-                  onClick={(e) => scrollToSection(e, link.to)}
-                  className={`font-serif text-lg py-2 transition-colors hover:text-cranberry ${
-                    activeSection === link.to.replace('#', '')
-                      ? 'text-cranberry font-medium'
-                      : 'text-graphite/70'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                if (link.to === '/zaproszenie') {
+                  return (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => {
+                        setIsOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="font-serif text-lg py-2 transition-colors hover:text-cranberry text-graphite/70"
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={link.to}
+                    href={link.to}
+                    onClick={(e) => scrollToSection(e, link.to)}
+                    className={`font-serif text-lg py-2 transition-colors hover:text-cranberry ${
+                      activeSection === link.to.replace('#', '')
+                        ? 'text-cranberry font-medium'
+                        : 'text-graphite/70'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}

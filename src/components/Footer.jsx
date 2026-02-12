@@ -43,7 +43,17 @@ export default function Footer() {
           <a href="#rsvp" onClick={(e) => scrollToSection(e, '#rsvp')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
             RSVP
           </a>
-          <Link to="/zaproszenie" className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+          <a href="#prezenty" onClick={(e) => scrollToSection(e, '#prezenty')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+            Prezenty
+          </a>
+          <a href="#galeria" onClick={(e) => scrollToSection(e, '#galeria')} className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors">
+            Galeria
+          </a>
+          <Link 
+            to="/zaproszenie" 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="font-serif text-sm text-graphite/60 hover:text-cranberry transition-colors"
+          >
             Zaproszenie
           </Link>
         </div>
