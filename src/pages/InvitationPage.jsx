@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   Heart,
   Church,
@@ -11,6 +12,7 @@ import {
   Gift,
   Bird,
   Sparkles,
+  ArrowLeft,
 } from 'lucide-react';
 
 export default function InvitationPage() {
@@ -277,6 +279,17 @@ export default function InvitationPage() {
                 strokeWidth="2"
               />
             </svg>
+          </div>
+          
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-cranberry text-cream font-serif rounded-full hover:bg-cranberry/90 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Wróć do strony głównej
+            </Link>
           </div>
           
           <p className="mt-8 text-sm text-graphite/40 font-serif">
