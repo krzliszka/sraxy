@@ -297,7 +297,7 @@ export default function InvitationPage() {
           <div className="mt-8 flex justify-center">
             <button
               onClick={() => {
-                window.location.href = '/#home';
+                window.location.href = '/sraxy/#/';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-cranberry text-cream font-serif rounded-full hover:bg-cranberry/90 transition-colors"
