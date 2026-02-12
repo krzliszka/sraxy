@@ -12,12 +12,22 @@ import {
   Gift,
   Bird,
   Sparkles,
-  ArrowLeft,
+  X,
 } from 'lucide-react';
 
 export default function InvitationPage() {
   return (
     <div className="min-h-screen bg-cream">
+      {/* Close Button */}
+      <Link 
+        to="/"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed top-6 right-6 z-50 w-10 h-10 flex items-center justify-center bg-cranberry/90 hover:bg-cranberry text-cream rounded-full transition-colors shadow-lg"
+        title="Zamknij zaproszenie"
+      >
+        <X className="w-6 h-6" />
+      </Link>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-16 stripe-pattern overflow-hidden">
         {/* Decorative top border */}
