@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Clock, ArrowRight, Sparkles, Church, Wine, Car, Gift, HandHeart, PiggyBank, Camera, Upload, Send, CheckCircle, AlertCircle, Users, Utensils, MessageSquare, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Google Apps Script URL - podmień na swój URL
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFcDNnapFL34HmkxbpLTp1JFpaALgw9rJBaSunk90lK0v4M3mro00UyB2EA55v8JLC/exec';
 
 // Timeline data
 const timeline = [
@@ -86,13 +86,19 @@ function HeroSection() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#rsvp" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg">
+          <button
+            onClick={() => document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' })}
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg"
+          >
             Potwierdź obecność
             <ArrowRight className="w-5 h-5" />
-          </a>
-          <a href="#szczegoly" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cream border-2 border-chocolate/30 text-chocolate font-serif text-lg rounded-full hover:bg-chocolate/10 transition-colors">
+          </button>
+          <button
+            onClick={() => document.getElementById('szczegoly')?.scrollIntoView({ behavior: 'smooth' })}
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cream border-2 border-chocolate/30 text-chocolate font-serif text-lg rounded-full hover:bg-chocolate/10 transition-colors"
+          >
             Zobacz szczegóły
-          </a>
+          </button>
         </div>
       </div>
 
