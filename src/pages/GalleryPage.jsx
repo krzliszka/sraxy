@@ -104,17 +104,18 @@ export default function GalleryPage() {
             Podzielcie się z nami
           </h2>
           <p className="font-serif text-graphite/70 mb-8">
-            Po ślubie chętnie zobaczymy Wasze zdjęcia z tego dnia!
-            Możecie je przesłać tutaj lub oznaczyć nas w social mediach.
+            Tu bedzie jakies okienko/przycisk, który otworzy od razu aparat w telefonie. 
+            QR na lustrze bedzie prowadzil do tej klasy, wiec zeskanowanie bedzie otwieralo najpierw strone - potem aparat
+            (to jeszcze trzeba przetestowac) czy nie lepiej po prostu kliknac przesylanie zdj z galerii i moze nikt nie wysle kotka 
           </p>
           
           <div className="bg-cream rounded-2xl p-8 border-2 border-dashed border-chocolate/30">
             <Upload className="w-12 h-12 text-chocolate/40 mx-auto mb-4" />
             <p className="font-serif text-graphite/60 mb-4">
-              Funkcja przesyłania zdjęć będzie dostępna po ślubie
+              Funkcja przesyłania zdjęć będzie dostępna jak SROKI wrócą z anatarktydy
             </p>
             <p className="font-serif text-sm text-graphite/40">
-              #PaulaIArtur2026
+              #PaulaIArtur2026 #gregoryBRAUN
             </p>
           </div>
         </div>
