@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import {
+import { 
   Heart,
   Church,
   Wine,
@@ -16,17 +15,21 @@ import {
 } from 'lucide-react';
 
 export default function InvitationPage() {
+  const handleClose = () => {
+    window.location.href = '/#home';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       {/* Close Button */}
-      <Link 
-        to="/"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      <button 
+        onClick={handleClose}
         className="fixed top-6 right-6 z-50 w-10 h-10 flex items-center justify-center bg-cranberry/90 hover:bg-cranberry text-cream rounded-full transition-colors shadow-lg"
         title="Zamknij zaproszenie"
       >
         <X className="w-6 h-6" />
-      </Link>
+      </button>
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-16 stripe-pattern overflow-hidden">
@@ -292,14 +295,15 @@ export default function InvitationPage() {
           </div>
           
           <div className="mt-8 flex justify-center">
-            <Link
-              to="/"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            <button
+              onClick={() => {
+                window.location.href = '/#home';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="inline-flex items-center gap-2 px-6 py-3 bg-cranberry text-cream font-serif rounded-full hover:bg-cranberry/90 transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" />
               Wróć do strony głównej
-            </Link>
+            </button>
           </div>
           
           <p className="mt-8 text-sm text-graphite/40 font-serif">
