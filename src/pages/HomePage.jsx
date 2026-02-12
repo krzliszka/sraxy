@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Heart, Calendar, MapPin, Clock, ArrowRight, Sparkles, Church, Wine, Car, Gift, HandHeart, PiggyBank, Camera, Upload, Send, CheckCircle, AlertCircle, Users, Utensils, MessageSquare, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Google Apps Script URL - podmień na swój URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFcDNnapFL34HmkxbpLTp1JFpaALgw9rJBaSunk90lK0v4M3mro00UyB2EA55v8JLC/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHY10zozTET3XKisDLQ28VyIIAZCNNuJrmlapAij2BaRb_8Fvp9tybLE3OVN98o4o9/exec';
 
 // Timeline data
 const timeline = [

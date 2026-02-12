@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Heart, Send, CheckCircle, AlertCircle, Sparkles, Users, Utensils, Car, MessageSquare } from 'lucide-react';
 
 // Google Apps Script URL - You need to create one and paste here
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFcDNnapFL34HmkxbpLTp1JFpaALgw9rJBaSunk90lK0v4M3mro00UyB2EA55v8JLC/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxHY10zozTET3XKisDLQ28VyIIAZCNNuJrmlapAij2BaRb_8Fvp9tybLE3OVN98o4o9/exec';
 
 export default function RSVPPage() {
   const [formData, setFormData] = useState({
