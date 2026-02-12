@@ -102,7 +102,7 @@ export default function GallerySection() {
       {/* Upload CTA */}
       <div className="max-w-2xl mx-auto text-center bg-sage/20 rounded-3xl p-8">
         <h3 className="font-handwriting text-4xl text-cranberry mb-4">
-          Podzielcie się z nami
+          Podzielcie się z nami *** 
         </h3>
         <p className="font-serif text-graphite/70 mb-8">
           Po ślubie chętnie zobaczymy Wasze zdjęcia z tego dnia!
