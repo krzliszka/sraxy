@@ -24,6 +24,61 @@ const photos = [
 ];
 
 export default function HomePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("wedding_auth") === "11042026") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === "11042026") {
+      localStorage.setItem("wedding_auth", "11042026");
+      setIsAuthenticated(true);
+      setError("");
+    } else {
+      setError("Niepoprawne hasło. Spróbuj ponownie.");
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-cream">
+        <section className="relative flex flex-col items-center justify-center px-4 py-20 stripe-pattern min-w-[320px] w-full max-w-md rounded-xl shadow-xl border border-chocolate/10">
+          <div className="text-center z-10 max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <Sparkles className="w-4 h-4 text-chocolate/50" />
+              <span className="text-chocolate/70 text-sm tracking-[0.3em] uppercase font-serif">Pobieramy się</span>
+              <Sparkles className="w-4 h-4 text-chocolate/50" />
+            </div>
+            <h1 className="font-handwriting text-6xl sm:text-7xl md:text-8xl text-cranberry mb-4">Paula & Artur</h1>
+            <form onSubmit={handleLogin} className="flex flex-col items-center gap-4 mt-8">
+              <input
+                type="password"
+                className="px-6 py-3 rounded-full border-2 border-chocolate/20 text-center text-lg font-serif focus:outline-none focus:border-chocolate/60 bg-cream text-chocolate shadow"
+                placeholder="Hasło dostępu (data ślubu)"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="px-8 py-3 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg"
+              >
+                Wejdź
+              </button>
+              {error && <div className="text-red-600 text-sm mt-2">{error}</div>}
+            </form>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero Section */}
