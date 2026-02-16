@@ -47,8 +47,8 @@ export default function HomePage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-cream">
-        <section className="relative flex flex-col items-center justify-center px-4 py-20 stripe-pattern min-w-[320px] w-full max-w-md rounded-xl shadow-xl border border-chocolate/10">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-cream stripe-pattern">
+        <section className="relative flex flex-col items-center justify-center px-4 py-20 w-full max-w-md">
           <div className="text-center z-10 max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-6">
               <Sparkles className="w-4 h-4 text-chocolate/50" />
@@ -60,7 +60,7 @@ export default function HomePage() {
               <input
                 type="password"
                 className="px-6 py-3 rounded-full border-2 border-chocolate/20 text-center text-lg font-serif focus:outline-none focus:border-chocolate/60 bg-cream text-chocolate shadow"
-                placeholder="Hasło dostępu (data ślubu)"
+                placeholder="Hasło dostępu"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 autoFocus
