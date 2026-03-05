@@ -1,5 +1,4 @@
 # Konfiguracja RSVP z Google Sheets
-
 ## Krok 1: Utwórz arkusz Google Sheets
 
 1. Idź do [Google Sheets](https://sheets.google.com)
