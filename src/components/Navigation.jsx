@@ -6,9 +6,9 @@ const navLinks = [
   { to: '#home', label: 'Start' },
   { to: '#historia', label: 'Nasza historia' },
   { to: '#szczegoly', label: 'Szczegóły' },
-  { to: '#rsvp', label: 'RSVP' },
   { to: '#prezenty', label: 'Prezenty' },
   { to: '#galeria', label: 'Galeria' },
+  { to: '/stoliki', label: 'Stoliki' },
   { to: '/zaproszenie', label: 'Zaproszenie' },
 ];
 
