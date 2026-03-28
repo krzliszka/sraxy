@@ -66,13 +66,15 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              if (link.to === '/zaproszenie') {
+              if (link.to.startsWith('/')) {
                 return (
                   <Link
                     key={link.to}
                     to={link.to}
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="font-serif text-sm tracking-wide transition-colors hover:text-cranberry text-graphite/70"
+                    className={`font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
+                      location.pathname === link.to ? 'text-cranberry font-medium' : 'text-graphite/70'
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -110,7 +112,7 @@ export default function Navigation() {
           <div className="md:hidden py-4 border-t border-chocolate/10">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => {
-                if (link.to === '/zaproszenie') {
+                if (link.to.startsWith('/')) {
                   return (
                     <Link
                       key={link.to}
@@ -119,7 +121,9 @@ export default function Navigation() {
                         setIsOpen(false);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="font-serif text-lg py-2 transition-colors hover:text-cranberry text-graphite/70"
+                      className={`font-serif text-lg py-2 transition-colors hover:text-cranberry ${
+                        location.pathname === link.to ? 'text-cranberry font-medium' : 'text-graphite/70'
+                      }`}
                     >
                       {link.label}
                     </Link>
