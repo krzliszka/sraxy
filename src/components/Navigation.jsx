@@ -5,7 +5,7 @@ import { Menu, X, Heart } from 'lucide-react';
 const NAV_SECTIONS = [
   { to: '#home', label: 'Start' },
   { to: '#historia', label: 'Nasza historia' },
-  { to: '#szczegoly', label: 'Szczegoly' },
+  { to: '#szczegoly', label: 'Szczeg\u00f3\u0142y' },
   { to: '#prezenty', label: 'Prezenty' },
   { to: '#galeria', label: 'Galeria' },
   { to: '#stoliki', label: 'Stoliki' },
@@ -58,13 +58,11 @@ export default function Navigation() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
-        {/* Logo */}
         <a href="#home" onClick={(e) => scrollTo(e, '#home')} className="flex items-center gap-2">
           <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
           <span className="font-hand text-2xl text-cranberry">P & A</span>
         </a>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_SECTIONS.map((link) => (
             <a
@@ -87,7 +85,6 @@ export default function Navigation() {
           ))}
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden p-2 text-graphite hover:text-cranberry transition-colors"
@@ -97,7 +94,6 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       {open && (
         <div className="md:hidden bg-cream/98 backdrop-blur-md border-t border-chocolate/10 px-4 py-6 space-y-4">
           {NAV_SECTIONS.map((link) => (
@@ -105,9 +101,7 @@ export default function Navigation() {
               key={link.to}
               href={link.to}
               onClick={(e) => scrollTo(e, link.to)}
-              className={`block font-serif text-lg py-1 ${linkClass(
-                active === link.to.replace('#', ''),
-              )}`}
+              className={`block font-serif text-lg py-1 ${linkClass(active === link.to.replace('#', ''))}`}
             >
               {link.label}
             </a>
@@ -117,9 +111,7 @@ export default function Navigation() {
               key={link.to}
               to={link.to}
               onClick={() => setOpen(false)}
-              className={`block font-serif text-lg py-1 ${linkClass(
-                location.pathname === link.to,
-              )}`}
+              className={`block font-serif text-lg py-1 ${linkClass(location.pathname === link.to)}`}
             >
               {link.label}
             </Link>

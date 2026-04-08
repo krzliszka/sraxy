@@ -9,7 +9,7 @@ const INITIAL = { name: '', email: '', phone: '', guests: '1', attending: '', di
 
 export default function RSVPSection() {
   const [form, setForm] = useState(INITIAL);
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   const set = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -18,7 +18,7 @@ export default function RSVPSection() {
     e.preventDefault();
     if (!form.name || !form.attending) {
       setStatus('error');
-      setErrorMsg('Prosze wypelnic wymagane pola (imie i nazwisko oraz potwierdzenie obecnosci).');
+      setErrorMsg('Prosz\u0119 wype\u0142ni\u0107 wymagane pola (imi\u0119 i nazwisko oraz potwierdzenie obecno\u015bci).');
       return;
     }
     setStatus('loading');
@@ -33,7 +33,7 @@ export default function RSVPSection() {
       setForm(INITIAL);
     } catch {
       setStatus('error');
-      setErrorMsg('Wystapil blad. Sprobuj ponownie lub skontaktuj sie z nami telefonicznie.');
+      setErrorMsg('Wyst\u0105pi\u0142 b\u0142\u0105d. Spr\u00f3buj ponownie lub skontaktuj si\u0119 z nami telefonicznie.');
     }
   };
 
@@ -44,7 +44,7 @@ export default function RSVPSection() {
     <section id="rsvp" className="py-20 px-4 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
         <SectionHeader
-          tag="Potwierdz obecnosc"
+          tag="Potwierd\u017a obecno\u015b\u0107"
           title="RSVP"
           subtitle={
             <>
@@ -60,9 +60,9 @@ export default function RSVPSection() {
               <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-sage/30 flex items-center justify-center">
                 <CheckCircle className="w-10 h-10 text-sage" />
               </div>
-              <h3 className="font-hand text-4xl text-cranberry mb-3">Dziekujemy!</h3>
-              <p className="font-serif text-lg text-graphite/70">Twoje potwierdzenie zostalo wyslane.</p>
-              <p className="font-serif text-graphite/50 mt-1">Do zobaczenia na naszym slubie!</p>
+              <h3 className="font-hand text-4xl text-cranberry mb-3">Dzi\u0119kujemy!</h3>
+              <p className="font-serif text-lg text-graphite/70">Twoje potwierdzenie zosta\u0142o wys\u0142ane.</p>
+              <p className="font-serif text-graphite/50 mt-1">Do zobaczenia na naszym \u015blubie!</p>
               <div className="flex items-center justify-center gap-3 mt-8">
                 <Heart className="w-4 h-4 text-cranberry/40 fill-cranberry/40" />
                 <Heart className="w-6 h-6 text-cranberry fill-cranberry" />
@@ -78,13 +78,11 @@ export default function RSVPSection() {
                 </div>
               )}
 
-              {/* Name */}
               <div>
-                <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">Imie i nazwisko *</label>
+                <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">Imi\u0119 i nazwisko *</label>
                 <input type="text" name="name" value={form.name} onChange={set} required className={inputCls} placeholder="Jan Kowalski" />
               </div>
 
-              {/* Email + Phone */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">Email</label>
@@ -96,12 +94,11 @@ export default function RSVPSection() {
                 </div>
               </div>
 
-              {/* Attending */}
               <div>
-                <label className="block font-serif text-graphite font-medium mb-3 text-sm">Czy wezmiesz udzial? *</label>
+                <label className="block font-serif text-graphite font-medium mb-3 text-sm">Czy we\u017amiesz udzia\u0142? *</label>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {[
-                    { val: 'yes', label: 'Tak, z przyjemnoscia!', color: 'cranberry' },
+                    { val: 'yes', label: 'Tak, z przyjemno\u015bci\u0105!', color: 'cranberry' },
                     { val: 'no', label: 'Niestety, nie dam rady', color: 'chocolate' },
                   ].map((opt) => (
                     <label
@@ -125,16 +122,15 @@ export default function RSVPSection() {
                 </div>
               </div>
 
-              {/* Extra fields when attending */}
               {form.attending === 'yes' && (
                 <>
                   <div>
                     <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">
-                      <Users className="w-4 h-4 inline mr-1.5" />Liczba osob
+                      <Users className="w-4 h-4 inline mr-1.5" />Liczba os\u00f3b
                     </label>
                     <select name="guests" value={form.guests} onChange={set} className={inputCls}>
                       {[1, 2, 3, 4, 5].map((n) => (
-                        <option key={n} value={n}>{n} {n === 1 ? 'osoba' : n < 5 ? 'osoby' : 'osob'}</option>
+                        <option key={n} value={n}>{n} {n === 1 ? 'osoba' : n < 5 ? 'osoby' : 'os\u00f3b'}</option>
                       ))}
                     </select>
                   </div>
@@ -142,31 +138,29 @@ export default function RSVPSection() {
                     <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">
                       <Utensils className="w-4 h-4 inline mr-1.5" />Wymagania dietetyczne
                     </label>
-                    <textarea name="diet" value={form.diet} onChange={set} rows={2} className={`${inputCls} resize-none`} placeholder="Wegetarianskie, weganskie, bezglutenowe, alergie..." />
+                    <textarea name="diet" value={form.diet} onChange={set} rows={2} className={`${inputCls} resize-none`} placeholder="Wegetaria\u0144skie, wega\u0144skie, bezglutenowe, alergie\u2026" />
                   </div>
                   <div>
                     <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">
                       <Car className="w-4 h-4 inline mr-1.5" />Transport
                     </label>
                     <select name="transport" value={form.transport} onChange={set} className={inputCls}>
-                      <option value="">Wybierz opcje...</option>
-                      <option value="own">Przyjade wlasnym transportem</option>
-                      <option value="need">Potrzebuje pomocy z transportem</option>
-                      <option value="carpool">Chetnie zabiore kogos po drodze</option>
+                      <option value="">Wybierz opcj\u0119\u2026</option>
+                      <option value="own">Przyjad\u0119 w\u0142asnym transportem</option>
+                      <option value="need">Potrzebuj\u0119 pomocy z transportem</option>
+                      <option value="carpool">Ch\u0119tnie zabior\u0119 kogo\u015b po drodze</option>
                     </select>
                   </div>
                 </>
               )}
 
-              {/* Comments */}
               <div>
                 <label className="block font-serif text-graphite font-medium mb-1.5 text-sm">
-                  <MessageSquare className="w-4 h-4 inline mr-1.5" />Uwagi lub zyczenia
+                  <MessageSquare className="w-4 h-4 inline mr-1.5" />Uwagi lub \u017cyczenia
                 </label>
-                <textarea name="comments" value={form.comments} onChange={set} rows={3} className={`${inputCls} resize-none`} placeholder="Cokolwiek chcesz nam przekazac..." />
+                <textarea name="comments" value={form.comments} onChange={set} rows={3} className={`${inputCls} resize-none`} placeholder="Cokolwiek chcesz nam przekaza\u0107\u2026" />
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={status === 'loading'}
@@ -175,12 +169,12 @@ export default function RSVPSection() {
                 {status === 'loading' ? (
                   <>
                     <div className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin" />
-                    Wysylanie...
+                    Wysy\u0142anie\u2026
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    Wyslij potwierdzenie
+                    Wy\u015blij potwierdzenie
                   </>
                 )}
               </button>
@@ -188,10 +182,9 @@ export default function RSVPSection() {
           )}
         </div>
 
-        {/* Phone alternative */}
         <div className="max-w-xl mx-auto text-center bg-sage/15 rounded-3xl p-8">
-          <h3 className="font-hand text-3xl text-cranberry mb-3">Wolisz zadzwonic?</h3>
-          <p className="font-serif text-graphite/60 mb-6 text-sm">Mozesz tez potwierdzic obecnosc telefonicznie:</p>
+          <h3 className="font-hand text-3xl text-cranberry mb-3">Wolisz zadzwoni\u0107?</h3>
+          <p className="font-serif text-graphite/60 mb-6 text-sm">Mo\u017cesz te\u017c potwierdzi\u0107 obecno\u015b\u0107 telefonicznie:</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {[
               { name: 'Paula', phone: '504-444-866', tel: '+48504444866' },

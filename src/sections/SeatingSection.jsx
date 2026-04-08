@@ -1,17 +1,86 @@
-import { useMemo, useState } from 'react';
-import { MapPin, Search, Users, Music2 } from 'lucide-react';
+import { useMemo, useState, useRef, useEffect } from 'react';
+import { Search, Users, MapPin } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 
+/*
+ * Venue layout based on Dw\u00f3r Wola S\u0119kowa floor plan.
+ *
+ * Layout zones (approximate positions as % of floor plan container):
+ *  - Main hall (left half): 4 tables + couple's table (2-M\u0141ODZI)
+ *  - Dance floor (center)
+ *  - Right wing: chillout zone + mini bar
+ *  - Top: sweet table + rustic table
+ *  - Bottom: main entrance
+ */
+
 const TABLES = [
-  { id: '1', x: 16, y: 20, zone: 'Lewa sala', guests: ['PAULA', 'SRAX', 'Piotr Nowak', 'Anna Nowak', 'Tomasz Lewandowski'] },
-  { id: '2', x: 38, y: 20, zone: 'Lewa sala', guests: ['Krzysztof Walczak', 'Paula Walczak', 'Andrzej Duda', 'Agnieszka Duda', 'Michal Szpaderski'] },
-  { id: '3', x: 62, y: 20, zone: 'Prawa sala', guests: ['Robert Biedron', 'Joanna Biedron', 'Pawel Tanajno', 'Ewa Tanajno', 'Rafal Sonik'] },
-  { id: '4', x: 84, y: 20, zone: 'Prawa sala', guests: ['Dorota Szelagowska', 'Zbigniew Szelagowski', 'Bogdan Borusewicz', 'Czeslawa Borusewicz', 'Lech Kaczynski'] },
-  { id: '5', x: 26, y: 72, zone: 'Lewa sala', guests: ['Jaroslaw Kaczynski', 'Grazyna Kaczynska', 'Donald Tusk', 'Malgorzata Tusk', 'Bronislaw Komorowski'] },
-  { id: '6', x: 74, y: 72, zone: 'Prawa sala', guests: ['Zofia Mazur', 'Jakub Mazur', 'Marek Grzelak', 'Natalia Grzelak', 'Maja Wrona'] },
+  {
+    id: '1',
+    label: 'St\u00f3\u0142 1',
+    seats: 10,
+    x: 13, y: 25,
+    zone: 'Sala g\u0142\u00f3wna',
+    guests: ['Go\u015b\u0107 1-1', 'Go\u015b\u0107 1-2', 'Go\u015b\u0107 1-3', 'Go\u015b\u0107 1-4', 'Go\u015b\u0107 1-5', 'Go\u015b\u0107 1-6', 'Go\u015b\u0107 1-7', 'Go\u015b\u0107 1-8', 'Go\u015b\u0107 1-9', 'Go\u015b\u0107 1-10'],
+    shape: 'rect',
+  },
+  {
+    id: 'M',
+    label: 'Para M\u0142oda',
+    seats: 2,
+    x: 13, y: 48,
+    zone: 'Sala g\u0142\u00f3wna',
+    guests: ['Paula', 'Artur'],
+    shape: 'rect',
+    highlight: true,
+  },
+  {
+    id: '2',
+    label: 'St\u00f3\u0142 2',
+    seats: 10,
+    x: 13, y: 70,
+    zone: 'Sala g\u0142\u00f3wna',
+    guests: ['Go\u015b\u0107 2-1', 'Go\u015b\u0107 2-2', 'Go\u015b\u0107 2-3', 'Go\u015b\u0107 2-4', 'Go\u015b\u0107 2-5', 'Go\u015b\u0107 2-6', 'Go\u015b\u0107 2-7', 'Go\u015b\u0107 2-8', 'Go\u015b\u0107 2-9', 'Go\u015b\u0107 2-10'],
+    shape: 'rect',
+  },
+  {
+    id: '3',
+    label: 'St\u00f3\u0142 3',
+    seats: 14,
+    x: 30, y: 25,
+    zone: 'Sala g\u0142\u00f3wna',
+    guests: ['Go\u015b\u0107 3-1', 'Go\u015b\u0107 3-2', 'Go\u015b\u0107 3-3', 'Go\u015b\u0107 3-4', 'Go\u015b\u0107 3-5', 'Go\u015b\u0107 3-6', 'Go\u015b\u0107 3-7', 'Go\u015b\u0107 3-8', 'Go\u015b\u0107 3-9', 'Go\u015b\u0107 3-10', 'Go\u015b\u0107 3-11', 'Go\u015b\u0107 3-12', 'Go\u015b\u0107 3-13', 'Go\u015b\u0107 3-14'],
+    shape: 'rect',
+  },
+  {
+    id: '4',
+    label: 'St\u00f3\u0142 4',
+    seats: 10,
+    x: 30, y: 70,
+    zone: 'Sala g\u0142\u00f3wna',
+    guests: ['Go\u015b\u0107 4-1', 'Go\u015b\u0107 4-2', 'Go\u015b\u0107 4-3', 'Go\u015b\u0107 4-4', 'Go\u015b\u0107 4-5', 'Go\u015b\u0107 4-6', 'Go\u015b\u0107 4-7', 'Go\u015b\u0107 4-8', 'Go\u015b\u0107 4-9', 'Go\u015b\u0107 4-10'],
+    shape: 'rect',
+  },
+  {
+    id: '5',
+    label: 'St\u00f3\u0142 5',
+    seats: 15,
+    x: 52, y: 30,
+    zone: 'Przy parkiecie',
+    guests: ['Go\u015b\u0107 5-1', 'Go\u015b\u0107 5-2', 'Go\u015b\u0107 5-3', 'Go\u015b\u0107 5-4', 'Go\u015b\u0107 5-5', 'Go\u015b\u0107 5-6', 'Go\u015b\u0107 5-7', 'Go\u015b\u0107 5-8', 'Go\u015b\u0107 5-9', 'Go\u015b\u0107 5-10', 'Go\u015b\u0107 5-11', 'Go\u015b\u0107 5-12', 'Go\u015b\u0107 5-13', 'Go\u015b\u0107 5-14', 'Go\u015b\u0107 5-15'],
+    shape: 'rect',
+  },
+  {
+    id: '6',
+    label: 'St\u00f3\u0142 6',
+    seats: 10,
+    x: 82, y: 22,
+    zone: 'Strefa chillout',
+    guests: ['Go\u015b\u0107 6-1', 'Go\u015b\u0107 6-2', 'Go\u015b\u0107 6-3', 'Go\u015b\u0107 6-4', 'Go\u015b\u0107 6-5', 'Go\u015b\u0107 6-6', 'Go\u015b\u0107 6-7', 'Go\u015b\u0107 6-8', 'Go\u015b\u0107 6-9', 'Go\u015b\u0107 6-10'],
+    shape: 'rect',
+  },
 ];
 
-const norm = (s) => s.toLowerCase().trim();
+const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
 
 export default function SeatingSection() {
   const [selectedId, setSelectedId] = useState(null);
@@ -20,7 +89,7 @@ export default function SeatingSection() {
   const selected = TABLES.find((t) => t.id === selectedId) || null;
   const found = useMemo(() => {
     const q = norm(query);
-    return q ? TABLES.find((t) => t.guests.some((g) => norm(g).includes(q))) || null : null;
+    return q.length >= 2 ? TABLES.find((t) => t.guests.some((g) => norm(g).includes(q))) || null : null;
   }, [query]);
 
   const active = found || selected;
@@ -28,68 +97,137 @@ export default function SeatingSection() {
   return (
     <section id="stoliki" className="py-20 px-4 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader tag="Rozklad" title="Stoliki" subtitle="Tutaj znajdziesz swoje miejsce przy stole" />
+        <SectionHeader
+          tag="Rozk\u0142ad"
+          title="Stoliki"
+          subtitle="Znajd\u017a swoje miejsce przy stole"
+        />
 
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
-          {/* Map */}
+        <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-10 items-start">
+          {/* ============ FLOOR PLAN ============ */}
           <div className="space-y-4">
             <div className="flex items-center justify-between gap-3 flex-wrap">
-              <h3 className="font-serif text-xl text-graphite font-medium">
+              <h3 className="font-serif text-lg text-graphite font-medium">
                 <MapPin className="w-5 h-5 inline mr-2" />Mapa sali
               </h3>
-              <span className="text-xs font-serif uppercase tracking-widest text-graphite/50">
-                Kliknij stol
+              <span className="text-xs font-serif text-graphite/40 uppercase tracking-widest">
+                Kliknij st\u00f3\u0142, aby zobaczy\u0107 go\u015bci
               </span>
             </div>
 
-            <div className="relative aspect-[4/3] bg-cream rounded-3xl border-2 border-chocolate/15 p-4 sm:p-6 overflow-hidden shadow-sm">
-              {/* DJ area */}
-              <div className="absolute top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-sage/25 rounded-full border border-sage/30 text-xs font-serif text-graphite/70 flex items-center gap-2">
-                <Music2 className="w-3.5 h-3.5" /> DJ / Zespol
-              </div>
+            <div className="relative bg-cream rounded-3xl border-2 border-chocolate/15 overflow-hidden shadow-sm" style={{ aspectRatio: '5/3.5' }}>
+              {/* === ZONES === */}
 
-              {/* Dance floor */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[46%] h-[36%] rounded-2xl border-2 border-cranberry/25 bg-cranberry/5 flex items-center justify-center text-center px-4">
-                <div>
-                  <p className="font-serif text-xs uppercase tracking-[0.2em] text-cranberry/60">Parkiet</p>
-                  <p className="font-hand text-2xl text-cranberry">Do tanca</p>
+              {/* Main hall outline (left) */}
+              <div className="absolute border-2 border-chocolate/10 rounded-2xl bg-cream/50"
+                style={{ left: '2%', top: '8%', width: '43%', height: '84%' }} />
+
+              {/* Dance floor (center) */}
+              <div className="absolute rounded-2xl border-2 border-cranberry/20 bg-cranberry/5 flex items-center justify-center"
+                style={{ left: '42%', top: '35%', width: '22%', height: '40%' }}>
+                <div className="text-center">
+                  <p className="font-serif text-[10px] sm:text-xs uppercase tracking-widest text-cranberry/50">Parkiet</p>
+                  <p className="font-hand text-lg sm:text-2xl text-cranberry">Do ta\u0144ca</p>
                 </div>
               </div>
 
-              {/* Table buttons */}
+              {/* Right wing - Chillout */}
+              <div className="absolute border-2 border-sage/30 rounded-2xl bg-sage/10"
+                style={{ left: '68%', top: '8%', width: '30%', height: '84%' }}>
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center">
+                  <p className="font-serif text-[10px] sm:text-xs text-sage/80 uppercase tracking-wider">Chillout zone</p>
+                  <p className="font-serif text-[9px] text-graphite/30">le\u017caki</p>
+                </div>
+              </div>
+
+              {/* Mini bar (top right) */}
+              <div className="absolute bg-chocolate/10 rounded-lg flex items-center justify-center"
+                style={{ left: '84%', top: '10%', width: '12%', height: '10%' }}>
+                <span className="font-serif text-[9px] sm:text-[10px] text-chocolate/50 text-center leading-tight">Mini<br/>bar</span>
+              </div>
+
+              {/* Sweet table (top left) */}
+              <div className="absolute bg-cranberry/8 rounded-lg flex items-center justify-center border border-cranberry/15"
+                style={{ left: '3%', top: '1%', width: '16%', height: '7%' }}>
+                <span className="font-serif text-[9px] sm:text-[10px] text-cranberry/60 text-center leading-tight">S\u0142odki<br/>st\u00f3\u0142</span>
+              </div>
+
+              {/* Rustic table (top center-left) */}
+              <div className="absolute bg-chocolate/8 rounded-lg flex items-center justify-center border border-chocolate/15"
+                style={{ left: '22%', top: '1%', width: '18%', height: '7%' }}>
+                <span className="font-serif text-[9px] sm:text-[10px] text-chocolate/60 text-center leading-tight">Wiejski<br/>st\u00f3\u0142</span>
+              </div>
+
+              {/* Main entrance (bottom) */}
+              <div className="absolute flex items-center justify-center"
+                style={{ left: '55%', bottom: '1%', width: '18%', height: '6%' }}>
+                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wej\u015bcie</span>
+              </div>
+
+              {/* Main entrance 2 (bottom left) */}
+              <div className="absolute flex items-center justify-center"
+                style={{ left: '10%', bottom: '1%', width: '24%', height: '6%' }}>
+                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wej\u015bcie g\u0142\u00f3wne</span>
+              </div>
+
+              {/* === TABLE BUTTONS === */}
               {TABLES.map((t) => {
                 const isActive = active?.id === t.id;
+                const isCouple = t.highlight;
                 return (
                   <button
                     key={t.id}
                     onClick={() => setSelectedId((p) => (p === t.id ? null : t.id))}
-                    className={`absolute -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-18 sm:h-18 rounded-full border-2 transition-all duration-200 flex flex-col items-center justify-center shadow-sm ${
-                      isActive
-                        ? 'border-cranberry bg-cranberry text-cream scale-110 shadow-lg'
-                        : 'border-chocolate/25 bg-cream hover:border-cranberry/60 hover:scale-105 text-graphite'
-                    }`}
+                    className={`
+                      absolute -translate-x-1/2 -translate-y-1/2 transition-all duration-200 flex flex-col items-center justify-center shadow-sm
+                      ${t.shape === 'rect' ? 'rounded-xl' : 'rounded-full'}
+                      ${isCouple ? 'w-16 h-10 sm:w-20 sm:h-12' : 'w-14 h-12 sm:w-16 sm:h-14'}
+                      ${isActive
+                        ? 'border-2 border-cranberry bg-cranberry text-cream scale-110 shadow-lg z-20'
+                        : isCouple
+                          ? 'border-2 border-cranberry/40 bg-cranberry/10 text-cranberry hover:bg-cranberry/20 hover:scale-105'
+                          : 'border-2 border-chocolate/20 bg-cream hover:border-cranberry/50 hover:scale-105 text-graphite'
+                      }
+                    `}
                     style={{ left: `${t.x}%`, top: `${t.y}%` }}
-                    aria-label={`Stol ${t.id}`}
+                    aria-label={t.label}
                   >
-                    <span className="font-serif text-lg leading-none">{t.id}</span>
-                    <span className={`text-[10px] ${isActive ? 'text-cream/80' : 'text-graphite/50'}`}>{t.guests.length} os.</span>
+                    <span className="font-serif text-xs sm:text-sm font-semibold leading-none">
+                      {isCouple ? 'M\u0141' : t.id}
+                    </span>
+                    <span className={`text-[8px] sm:text-[10px] ${isActive ? 'text-cream/80' : isCouple ? 'text-cranberry/60' : 'text-graphite/40'}`}>
+                      {t.seats} os.
+                    </span>
                   </button>
                 );
               })}
             </div>
 
-            {/* Info badges */}
-            <div className="grid sm:grid-cols-3 gap-2 text-xs font-serif text-graphite/60">
-              {['Wejscie: dolna czesc sali', 'Stol pary mlodej: przy parkiecie', 'Obsluga pomoze wskazac miejsce'].map((txt) => (
-                <div key={txt} className="p-2.5 rounded-xl bg-sage/10 border border-sage/20 text-center">{txt}</div>
-              ))}
+            {/* Legend */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-serif text-graphite/50">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-3 rounded border-2 border-cranberry/40 bg-cranberry/10" />
+                <span>Para M\u0142oda</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-3 rounded border-2 border-chocolate/20 bg-cream" />
+                <span>Sto\u0142y go\u015bci</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-3 rounded border-2 border-cranberry/20 bg-cranberry/5" />
+                <span>Parkiet</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-3 rounded border-2 border-sage/30 bg-sage/10" />
+                <span>Chillout</span>
+              </div>
             </div>
           </div>
 
-          {/* Search + Guest list */}
+          {/* ============ SEARCH + GUEST LIST ============ */}
           <div className="space-y-6">
             <div>
-              <h3 className="font-serif text-xl text-graphite font-medium mb-4">
+              <h3 className="font-serif text-lg text-graphite font-medium mb-4">
                 <Users className="w-5 h-5 inline mr-2" />Wyszukaj siebie
               </h3>
               <div className="relative">
@@ -101,32 +239,34 @@ export default function SeatingSection() {
                   className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-chocolate/15 focus:border-cranberry/40 outline-none bg-cream font-serif"
                 />
               </div>
-              {query && found && (
+              {query.length >= 2 && found && (
                 <p className="mt-2 font-serif text-sm text-graphite/60">
-                  Znaleziono przy <span className="text-cranberry font-medium">stole {found.id}</span> ({found.zone}).
+                  Znaleziono przy <span className="text-cranberry font-medium">{found.label}</span> ({found.zone}).
                 </p>
               )}
-              {query && !found && (
-                <p className="mt-2 font-serif text-sm text-graphite/60">Brak wyniku. Sprawdz pisownie lub skontaktuj sie z nami.</p>
+              {query.length >= 2 && !found && (
+                <p className="mt-2 font-serif text-sm text-graphite/60">
+                  Brak wyniku. Sprawd\u017a pisowni\u0119 lub skontaktuj si\u0119 z nami.
+                </p>
               )}
             </div>
 
             {active ? (
-              <div className="bg-sage/10 rounded-2xl p-6 border-2 border-sage/25">
-                <div className="text-center mb-5">
-                  <div className="inline-block bg-cranberry text-cream px-6 py-2.5 rounded-full font-serif font-bold text-lg mb-1">
-                    Stol {active.id}
+              <div className="bg-sage/10 rounded-2xl p-5 border-2 border-sage/25">
+                <div className="text-center mb-4">
+                  <div className={`inline-block px-5 py-2 rounded-full font-serif font-bold text-base mb-1 ${active.highlight ? 'bg-cranberry text-cream' : 'bg-cranberry text-cream'}`}>
+                    {active.label}
                   </div>
-                  <p className="text-graphite/60 font-serif text-sm">{active.zone} &middot; {active.guests.length} gosci</p>
+                  <p className="text-graphite/50 font-serif text-sm">{active.zone} &middot; {active.seats} miejsc</p>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5 max-h-64 overflow-y-auto pr-1">
                   {active.guests.map((g, i) => (
                     <button
                       key={g}
                       onClick={() => setQuery(g)}
-                      className="w-full text-left flex items-center gap-3 p-2.5 bg-cream rounded-lg border border-chocolate/10 hover:border-cranberry/25 transition-colors"
+                      className="w-full text-left flex items-center gap-2.5 p-2 bg-cream rounded-lg border border-chocolate/8 hover:border-cranberry/25 transition-colors"
                     >
-                      <div className="w-7 h-7 rounded-full bg-cranberry/15 flex items-center justify-center font-serif text-sm text-cranberry font-medium">
+                      <div className="w-6 h-6 rounded-full bg-cranberry/15 flex items-center justify-center font-serif text-xs text-cranberry font-medium flex-shrink-0">
                         {i + 1}
                       </div>
                       <span className="font-serif text-graphite text-sm">{g}</span>
@@ -136,7 +276,9 @@ export default function SeatingSection() {
               </div>
             ) : (
               <div className="bg-sage/10 rounded-2xl p-8 text-center border-2 border-sage/25">
-                <p className="font-serif text-graphite/60 text-sm">Wybierz stol na mapie lub wpisz nazwisko.</p>
+                <p className="font-serif text-graphite/50 text-sm">
+                  Wybierz st\u00f3\u0142 na mapie lub wpisz nazwisko, aby zobaczy\u0107 rozk\u0142ad miejsc.
+                </p>
               </div>
             )}
           </div>
@@ -147,9 +289,11 @@ export default function SeatingSection() {
           <h3 className="font-serif text-lg text-graphite font-medium mb-3">Informacje praktyczne</h3>
           <ul className="space-y-2 font-serif text-graphite/70 text-sm">
             {[
-              'Stoly sa prostokatne z miejscami dla ok. 50 gosci',
-              'Twoje miejsce jest zarezerwowane - przyjedz 30 minut przed ceremonia',
-              'W razie pytan - zadzwon do nas!',
+              'Sto\u0142y s\u0105 prostokatne z miejscami dla ok. 50 go\u015bci',
+              'Twoje miejsce jest zarezerwowane \u2013 przyjed\u017a 30 minut przed ceremoni\u0105',
+              'S\u0142odki st\u00f3\u0142 i wiejski st\u00f3\u0142 dost\u0119pne dla wszystkich',
+              'Strefa chillout z le\u017cakami \u2013 idealna na przerw\u0119 od ta\u0144ca',
+              'W razie pyta\u0144 \u2013 zadzwo\u0144 do nas!',
             ].map((txt) => (
               <li key={txt} className="flex items-start gap-3">
                 <span className="text-cranberry font-bold mt-0.5">&bull;</span>
@@ -162,7 +306,7 @@ export default function SeatingSection() {
         {/* Contact */}
         <div className="mt-10 text-center bg-sage/15 rounded-2xl p-8">
           <h3 className="font-hand text-3xl text-cranberry mb-3">Pytania?</h3>
-          <p className="font-serif text-graphite/60 text-sm mb-5">Skontaktuj sie z nami:</p>
+          <p className="font-serif text-graphite/60 text-sm mb-5">Skontaktuj si\u0119 z nami:</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {[
               { name: 'Paula', phone: '504-444-866', tel: '+48504444866' },

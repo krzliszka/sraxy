@@ -6,30 +6,30 @@ const VENUES = [
     icon: Church,
     title: 'Ceremonia',
     time: '15:30',
-    place: 'Kosciol Wniebowziecia NMP',
-    location: 'w Jacmierzu',
-    address: 'ul. Parkowa 12, Jacmierz',
-    mapQuery: 'Kosciol+Wniebowziecia+NMP+Jacmierz',
+    place: 'Ko\u015bci\u00f3\u0142 Wniebowzi\u0119cia NMP',
+    location: 'w Ja\u0107mierzu',
+    address: 'ul. Parkowa 12, Ja\u0107mierz',
+    mapQuery: 'Ko%C5%9Bci%C3%B3%C5%82+Wniebowzi%C4%99cia+NMP+Ja%C4%87mierz',
   },
   {
     icon: Wine,
     title: 'Wesele',
     time: 'po ceremonii',
-    place: 'Dwor Wola Sekowa',
+    place: 'Dw\u00f3r Wola S\u0119kowa',
     location: 'elegancja w sercu natury',
     address: 'Nowotaniec 106, Nowotaniec',
-    mapQuery: 'Dwor+Wola+Sekowa+Nowotaniec',
+    mapQuery: 'Dw%C3%B3r+Wola+S%C4%99kowa+Nowotaniec',
   },
 ];
 
 const SCHEDULE = [
-  { time: '15:30', title: 'Ceremonia slubna', desc: 'Kosciol Wniebowziecia NMP w Jacmierzu' },
-  { time: '17:00', title: 'Przyjazd gosci', desc: 'Powitanie w Dworze Wola Sekowa' },
-  { time: '17:30', title: 'Toast weselny', desc: 'Oficjalne rozpoczecie przyjecia' },
-  { time: '18:00', title: 'Obiad weselny', desc: 'Uczta dla wszystkich gosci' },
+  { time: '15:30', title: 'Ceremonia \u015blubna', desc: 'Ko\u015bci\u00f3\u0142 Wniebowzi\u0119cia NMP w Ja\u0107mierzu' },
+  { time: '17:00', title: 'Przyjazd go\u015bci', desc: 'Powitanie w Dworze Wola S\u0119kowa' },
+  { time: '17:30', title: 'Toast weselny', desc: 'Oficjalne rozpocz\u0119cie przyj\u0119cia' },
+  { time: '18:00', title: 'Obiad weselny', desc: 'Uczta dla wszystkich go\u015bci' },
   { time: '21:00', title: 'Pierwszy taniec', desc: 'Czas na parkiet!' },
-  { time: '00:00', title: 'Oczepiny', desc: 'Tradycja musi byc!' },
-  { time: '??:??', title: 'Zabawa do bialego rana', desc: 'Bawmy sie!', highlight: true },
+  { time: '00:00', title: 'Oczepiny', desc: 'Tradycja musi by\u0107!' },
+  { time: '??:??', title: 'Zabawa do bia\u0142ego rana', desc: 'Bawmy si\u0119!', highlight: true },
 ];
 
 export default function DetailsSection() {
@@ -38,8 +38,8 @@ export default function DetailsSection() {
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           tag="Informacje"
-          title="Szczegoly"
-          subtitle="Wszystko, co musicie wiedziec o naszym wielkim dniu."
+          title="Szczeg\u00f3\u0142y"
+          subtitle="Wszystko, co musicie wiedzie\u0107 o naszym wielkim dniu."
         />
 
         {/* Date badge */}
@@ -80,7 +80,7 @@ export default function DetailsSection() {
                   className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-sage/25 rounded-full text-chocolate text-sm hover:bg-sage/40 transition-colors font-serif"
                 >
                   <MapPin className="w-4 h-4" />
-                  Otworz mape
+                  Otw\u00f3rz map\u0119
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -123,8 +123,8 @@ export default function DetailsSection() {
             <div>
               <h3 className="font-serif text-lg text-graphite font-medium mb-1">Transport</h3>
               <p className="font-serif text-graphite/70 leading-relaxed">
-                Chcemy, zeby kazdy dotarl i wrocil bezpiecznie, wiec dajcie nam znac, jak planujecie podroz!
-                Jesli potrzebujecie pomocy z transportem lub chcecie sie zorganizowac z innymi goscmi, skontaktujcie sie z nami.
+                Chcemy, \u017ceby ka\u017cdy dotar\u0142 i wr\u00f3ci\u0142 bezpiecznie, wi\u0119c dajcie nam zna\u0107, jak planujecie podr\u00f3\u017c!
+                Je\u015bli potrzebujecie pomocy z transportem lub chcecie si\u0119 zorganizowa\u0107 z innymi go\u015b\u0107mi, skontaktujcie si\u0119 z nami.
               </p>
             </div>
           </div>

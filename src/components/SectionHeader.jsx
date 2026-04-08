@@ -1,8 +1,5 @@
 import { Sparkles } from 'lucide-react';
 
-/**
- * Reusable section header with sparkle decoration, handwriting title, and optional subtitle.
- */
 export default function SectionHeader({ tag, title, subtitle }) {
   return (
     <div className="text-center mb-14">

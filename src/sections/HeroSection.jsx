@@ -1,4 +1,4 @@
-import { Heart, Calendar, MapPin, ArrowDown } from 'lucide-react';
+import { Heart, Calendar, MapPin } from 'lucide-react';
 
 export default function HeroSection() {
   const scrollTo = (id) => {
@@ -20,24 +20,20 @@ export default function HeroSection() {
       ))}
 
       <div className="text-center z-10 max-w-3xl mx-auto animate-fade-in">
-        {/* Tagline */}
         <p className="text-chocolate/60 text-sm tracking-[0.3em] uppercase font-serif mb-6">
-          Pobieramy sie
+          Pobieramy si\u0119
         </p>
 
-        {/* Names */}
         <h1 className="font-hand text-7xl sm:text-8xl md:text-9xl text-cranberry mb-2 text-shadow">
           Paula & Artur
         </h1>
 
-        {/* Heart divider */}
         <div className="flex items-center justify-center gap-4 my-8">
           <span className="w-16 h-px bg-chocolate/30" />
           <Heart className="w-8 h-8 text-cranberry fill-cranberry animate-pulse-slow" />
           <span className="w-16 h-px bg-chocolate/30" />
         </div>
 
-        {/* Date */}
         <div className="flex items-center justify-center gap-3 mb-4">
           <Calendar className="w-5 h-5 text-chocolate" />
           <p className="text-3xl sm:text-4xl md:text-5xl font-serif text-graphite tracking-wide">
@@ -45,35 +41,31 @@ export default function HeroSection() {
           </p>
         </div>
 
-        {/* Location */}
         <div className="flex items-center justify-center gap-2 mb-10 text-graphite/50">
           <MapPin className="w-4 h-4" />
-          <p className="font-serif">Jacmierz &bull; Nowotaniec</p>
+          <p className="font-serif">Ja\u0107mierz &bull; Nowotaniec</p>
         </div>
 
-        {/* Invitation text */}
         <p className="font-serif text-lg sm:text-xl text-graphite/80 italic leading-relaxed max-w-xl mx-auto mb-12">
-          Mamy zaszczyt i ogromna radosc zaprosic Was na nasz slub!
+          Mamy zaszczyt i ogromn\u0105 rado\u015b\u0107 zaprosi\u0107 Was na nasz \u015blub!
         </p>
 
-        {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => scrollTo('rsvp')}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg"
           >
-            Potwierdz obecnosc
+            Potwierd\u017a obecno\u015b\u0107
           </button>
           <button
             onClick={() => scrollTo('szczegoly')}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cream border-2 border-chocolate/30 text-chocolate font-serif text-lg rounded-full hover:bg-chocolate/5 transition-colors"
           >
-            Zobacz szczegoly
+            Zobacz szczeg\u00f3\u0142y
           </button>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-chocolate/30 rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-3 bg-chocolate/40 rounded-full" />
