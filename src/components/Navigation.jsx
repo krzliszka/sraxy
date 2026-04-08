@@ -2,152 +2,130 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart } from 'lucide-react';
 
-const navLinks = [
+const NAV_SECTIONS = [
   { to: '#home', label: 'Start' },
   { to: '#historia', label: 'Nasza historia' },
-  { to: '#szczegoly', label: 'Szczegóły' },
+  { to: '#szczegoly', label: 'Szczegoly' },
   { to: '#prezenty', label: 'Prezenty' },
   { to: '#galeria', label: 'Galeria' },
-  { to: '/stoliki', label: 'Stoliki' },
+  { to: '#stoliki', label: 'Stoliki' },
+];
+
+const NAV_PAGES = [
   { to: '/zaproszenie', label: 'Zaproszenie' },
 ];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Scroll to section smoothly
-  const scrollToSection = (e, sectionId) => {
+  const scrollTo = (e, hash) => {
     e.preventDefault();
-    setIsOpen(false);
-    
-    const id = sectionId.replace('#', '');
-    const element = document.getElementById(id);
-    
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setOpen(false);
+    const el = document.getElementById(hash.replace('#', ''));
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Track active section on scroll
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navLinks.filter(link => link.to.startsWith('#')).map(link => link.to.replace('#', ''));
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i]);
-        if (element && element.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      const ids = NAV_SECTIONS.map((l) => l.to.replace('#', ''));
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const el = document.getElementById(ids[i]);
+        if (el && el.offsetTop <= window.scrollY + 120) {
+          setActive(ids[i]);
           break;
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const linkClass = (isActive) =>
+    `font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
+      isActive ? 'text-cranberry font-semibold' : 'text-graphite/70'
+    }`;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-chocolate/10">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a 
-            href="#home" 
-            onClick={(e) => scrollToSection(e, '#home')} 
-            className="flex items-center gap-2"
-          >
-            <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
-            <span className="font-handwriting text-2xl text-cranberry">P & A</span>
-          </a>
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-cream/95 backdrop-blur-sm shadow-sm border-b border-chocolate/10'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+        {/* Logo */}
+        <a href="#home" onClick={(e) => scrollTo(e, '#home')} className="flex items-center gap-2">
+          <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
+          <span className="font-hand text-2xl text-cranberry">P & A</span>
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              if (link.to.startsWith('/')) {
-                return (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className={`font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
-                      location.pathname === link.to ? 'text-cranberry font-medium' : 'text-graphite/70'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              }
-              return (
-                <a
-                  key={link.to}
-                  href={link.to}
-                  onClick={(e) => scrollToSection(e, link.to)}
-                  className={`font-serif text-sm tracking-wide transition-colors hover:text-cranberry ${
-                    activeSection === link.to.replace('#', '')
-                      ? 'text-cranberry font-medium'
-                      : 'text-graphite/70'
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-graphite hover:text-cranberry transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-8">
+          {NAV_SECTIONS.map((link) => (
+            <a
+              key={link.to}
+              href={link.to}
+              onClick={(e) => scrollTo(e, link.to)}
+              className={linkClass(active === link.to.replace('#', ''))}
+            >
+              {link.label}
+            </a>
+          ))}
+          {NAV_PAGES.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={linkClass(location.pathname === link.to)}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-chocolate/10">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => {
-                if (link.to.startsWith('/')) {
-                  return (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => {
-                        setIsOpen(false);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                      className={`font-serif text-lg py-2 transition-colors hover:text-cranberry ${
-                        location.pathname === link.to ? 'text-cranberry font-medium' : 'text-graphite/70'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                }
-                return (
-                  <a
-                    key={link.to}
-                    href={link.to}
-                    onClick={(e) => scrollToSection(e, link.to)}
-                    className={`font-serif text-lg py-2 transition-colors hover:text-cranberry ${
-                      activeSection === link.to.replace('#', '')
-                        ? 'text-cranberry font-medium'
-                        : 'text-graphite/70'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden p-2 text-graphite hover:text-cranberry transition-colors"
+          aria-label="Menu"
+        >
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden bg-cream/98 backdrop-blur-md border-t border-chocolate/10 px-4 py-6 space-y-4">
+          {NAV_SECTIONS.map((link) => (
+            <a
+              key={link.to}
+              href={link.to}
+              onClick={(e) => scrollTo(e, link.to)}
+              className={`block font-serif text-lg py-1 ${linkClass(
+                active === link.to.replace('#', ''),
+              )}`}
+            >
+              {link.label}
+            </a>
+          ))}
+          {NAV_PAGES.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              onClick={() => setOpen(false)}
+              className={`block font-serif text-lg py-1 ${linkClass(
+                location.pathname === link.to,
+              )}`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }

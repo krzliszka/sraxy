@@ -6,29 +6,49 @@
   html {
     scroll-behavior: smooth;
   }
-  
   body {
-    @apply bg-cream text-graphite font-serif;
+    @apply bg-cream text-graphite font-serif antialiased;
   }
 }
 
 @layer components {
-  .section-divider {
-    @apply w-24 h-px bg-chocolate/30 mx-auto my-8;
+  /* Wavy scalloped border card (like the DETALE card from the invitation) */
+  .scallop-border {
+    --scallop-size: 12px;
+    padding: calc(var(--scallop-size) + 1.5rem);
+    position: relative;
+    background: #fff;
   }
-  
-  .wavy-border {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23F4F4F0'/%3E%3C/svg%3E");
+  .scallop-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    border: 3px solid #9CB58C;
+    mask:
+      radial-gradient(circle var(--scallop-size) at calc(var(--scallop-size) * -0.4) 50%, transparent 98%, black) left  / var(--scallop-size) calc(var(--scallop-size) * 2),
+      radial-gradient(circle var(--scallop-size) at calc(100% + var(--scallop-size) * 0.4) 50%, transparent 98%, black) right / var(--scallop-size) calc(var(--scallop-size) * 2),
+      radial-gradient(circle var(--scallop-size) at 50% calc(var(--scallop-size) * -0.4), transparent 98%, black) top   / calc(var(--scallop-size) * 2) var(--scallop-size),
+      radial-gradient(circle var(--scallop-size) at 50% calc(100% + var(--scallop-size) * 0.4), transparent 98%, black) bottom / calc(var(--scallop-size) * 2) var(--scallop-size);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+    pointer-events: none;
   }
-  
+
+  /* Stripe background pattern */
   .stripe-pattern {
     background-image: repeating-linear-gradient(
       90deg,
       transparent,
       transparent 8px,
-      rgba(124, 76, 62, 0.05) 8px,
-      rgba(124, 76, 62, 0.05) 16px
+      rgba(124, 76, 62, 0.04) 8px,
+      rgba(124, 76, 62, 0.04) 16px
     );
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply w-24 h-px bg-chocolate/30 mx-auto my-8;
   }
 }
 
