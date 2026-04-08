@@ -1,4 +1,5 @@
 import { Heart, Church, Wine, Phone, MapPin, Clock, Calendar, Utensils, Car, Gift, X } from 'lucide-react';
+import CupidPup from '../components/CupidPup';
 
 function DetailCard({ icon, title, children }) {
   return (
@@ -56,7 +57,7 @@ export default function InvitationPage() {
             <p className="text-2xl sm:text-3xl md:text-4xl font-serif text-graphite tracking-wide">11.04.2026</p>
           </div>
           <p className="text-lg sm:text-xl text-graphite/80 font-serif italic leading-relaxed px-4">
-            Mamy zaszczyt i ogromn\u0105 rado\u015b\u0107<br />zaprosi\u0107 Was na nasz \u015blub!
+            Mamy zaszczyt i ogromną radość<br />zaprosić Was na nasz ślub!
           </p>
           <svg className="w-28 h-6 mx-auto text-chocolate/25 mt-10" viewBox="0 0 100 20">
             <path d="M0 10 Q12.5 0,25 10 T50 10 T75 10 T100 10" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -81,10 +82,10 @@ export default function InvitationPage() {
             <Clock className="w-5 h-5 text-chocolate/70" />
             <p className="text-2xl font-serif text-graphite">15:30</p>
           </div>
-          <h3 className="text-xl font-serif text-graphite font-medium mb-1">Ko\u015bci\u00f3\u0142 Wniebowzi\u0119cia NMP w Ja\u0107mierzu</h3>
+          <h3 className="text-xl font-serif text-graphite font-medium mb-1">Kościół Wniebowzięcia NMP w Jaćmierzu</h3>
           <div className="flex items-center justify-center gap-2 text-graphite/60 mb-6">
             <MapPin className="w-4 h-4" />
-            <p className="font-serif text-sm">ul. Parkowa 12, Ja\u0107mierz</p>
+            <p className="font-serif text-sm">ul. Parkowa 12, Jaćmierz</p>
           </div>
           <a href="https://maps.google.com/?q=Ko%C5%9Bci%C3%B3%C5%82+Wniebowzi%C4%99cia+NMP+Ja%C4%87mierz" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-cream border-2 border-chocolate/20 rounded-full text-chocolate hover:bg-chocolate/5 transition-colors font-serif text-sm">
@@ -101,12 +102,12 @@ export default function InvitationPage() {
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-sage/25 flex items-center justify-center">
             <Wine className="w-8 h-8 text-chocolate" />
           </div>
-          <h3 className="text-xl font-serif text-graphite font-medium mb-1">Dw\u00f3r Wola S\u0119kowa</h3>
+          <h3 className="text-xl font-serif text-graphite font-medium mb-1">Dwór Wola Sękowa</h3>
           <div className="flex items-center justify-center gap-2 text-graphite/60 mb-4">
             <MapPin className="w-4 h-4" />
             <p className="font-serif text-sm">Nowotaniec 106, Nowotaniec</p>
           </div>
-          <p className="font-serif text-graphite/70 italic mb-6">Po ceremonii zapraszamy na wsp\u00f3lne celebrowanie.</p>
+          <p className="font-serif text-graphite/70 italic mb-6">Po ceremonii zapraszamy na wspólne celebrowanie.</p>
           <a href="https://maps.google.com/?q=Dw%C3%B3r+Wola+S%C4%99kowa+Nowotaniec" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-cream border-2 border-chocolate/20 rounded-full text-chocolate hover:bg-chocolate/5 transition-colors font-serif text-sm">
             <MapPin className="w-4 h-4" /> Zobacz na mapie
@@ -150,10 +151,10 @@ export default function InvitationPage() {
           <h2 className="font-hand text-4xl sm:text-5xl text-cranberry mb-10 text-center">Informacje dodatkowe</h2>
           <div className="space-y-6">
             <DetailCard icon={<Utensils className="w-6 h-6 text-chocolate" />} title="Dieta">
-              Aby ka\u017cdy m\u00f3g\u0142 uczestniczy\u0107 bez przeszk\u00f3d, prosimy o informacj\u0119 o ewentualnych szczeg\u00f3lnych wymaganiach dietetycznych do 01.03.2026.
+              Aby każdy mógł uczestniczyć bez przeszkód, prosimy o informację o ewentualnych szczególnych wymaganiach dietetycznych do 01.03.2026.
             </DetailCard>
             <DetailCard icon={<Car className="w-6 h-6 text-chocolate" />} title="Transport">
-              Chcemy, \u017ceby ka\u017cdy dotar\u0142 i wr\u00f3ci\u0142 bezpiecznie, wi\u0119c dajcie zna\u0107, jak planujecie podr\u00f3\u017c!
+              Chcemy, żeby każdy dotarł i wrócił bezpiecznie, więc dajcie znać, jak planujecie podróż!
             </DetailCard>
             <div className="bg-sage/15 rounded-2xl p-6 sm:p-8 border border-sage/25">
               <div className="flex items-start gap-4">
@@ -161,12 +162,12 @@ export default function InvitationPage() {
                   <Gift className="w-6 h-6 text-chocolate" />
                 </div>
                 <div>
-                  <h3 className="font-hand text-2xl sm:text-3xl text-cranberry mb-2">Sroki ju\u017c \u0107wierkaj\u0105...</h3>
+                  <h3 className="font-hand text-2xl sm:text-3xl text-cranberry mb-2">Sroki już ćwierkają...</h3>
                   <p className="font-serif text-graphite/80 leading-relaxed text-sm">
-                    Najpi\u0119kniejszym prezentem b\u0119dzie Wasza obecno\u015b\u0107 \u2013 a je\u015bli chcecie dorzuci\u0107 co\u015b od siebie, zamiast kwiat\u00f3w, kt\u00f3re szybko wi\u0119dn\u0105, ucieszy nas butelka wina albo co\u015b stworzonego Waszymi r\u0119kami.
+                    Najpiękniejszym prezentem będzie Wasza obecność – a jeśli chcecie dorzucić coś od siebie, zamiast kwiatów, które szybko więdną, ucieszy nas butelka wina albo coś stworzonego Waszymi rękami.
                   </p>
                   <p className="font-serif text-graphite/80 leading-relaxed text-sm mt-2">
-                    A je\u015bli my\u015blicie o prezencie, symboliczny wk\u0142ad w nasz\u0105 wsp\u00f3ln\u0105 przysz\u0142o\u015b\u0107 b\u0119dzie dla nas szczeg\u00f3lnie mi\u0142ym gestem.
+                    A jeśli myślicie o prezencie, symboliczny wkład w naszą wspólną przyszłość będzie dla nas szczególnie miłym gestem.
                   </p>
                 </div>
               </div>
@@ -178,20 +179,20 @@ export default function InvitationPage() {
       {/* Footer */}
       <footer className="py-16 px-4 bg-cream border-t border-chocolate/10">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+          <div className="flex items-center justify-center gap-6 mb-6">
+            <CupidPup flip className="w-14 h-14 text-chocolate/40" />
             <Heart className="w-6 h-6 text-cranberry fill-cranberry" />
-            <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+            <CupidPup className="w-14 h-14 text-chocolate/40" />
           </div>
           <p className="font-hand text-3xl sm:text-4xl text-cranberry mb-2">Do zobaczenia!</p>
           <p className="font-hand text-2xl text-chocolate">Paula & Artur</p>
           <div className="mt-8">
             <button onClick={goHome}
               className="inline-flex items-center gap-2 px-6 py-3 bg-cranberry text-cream font-serif rounded-full hover:bg-cranberry/90 transition-colors text-sm">
-              Wr\u00f3\u0107 do strony g\u0142\u00f3wnej
+              Wróć do strony głównej
             </button>
           </div>
-          <p className="mt-8 text-xs text-graphite/30 font-serif">&copy; 2026 Paula & Artur</p>
+          <p className="mt-8 text-xs text-graphite/30 font-serif">© 2026 Paula & Artur</p>
         </div>
       </footer>
     </div>

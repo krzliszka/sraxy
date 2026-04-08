@@ -28,7 +28,7 @@ export default function CountdownSection() {
   return (
     <section className="py-20 px-4 bg-sage/20">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-hand text-4xl sm:text-5xl text-cranberry mb-10">Do \u015blubu pozosta\u0142o</h2>
+        <h2 className="font-hand text-4xl sm:text-5xl text-cranberry mb-10">Do ślubu pozostało</h2>
         <div className="flex justify-center gap-4 sm:gap-8">
           {items.map((item, i) => (
             <div key={i} className="bg-cream rounded-2xl p-6 sm:p-8 min-w-[100px] shadow-sm border border-sage/30">

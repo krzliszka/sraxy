@@ -1,4 +1,5 @@
 import { Heart, Calendar, MapPin } from 'lucide-react';
+import CupidPup from '../components/CupidPup';
 
 export default function HeroSection() {
   const scrollTo = (id) => {
@@ -19,9 +20,17 @@ export default function HeroSection() {
         <div key={cls} className={`absolute w-14 h-14 border-chocolate/20 hidden sm:block ${cls}`} />
       ))}
 
+      {/* Cupid pups decoration - flanking the hero */}
+      <div className="absolute left-4 sm:left-12 top-1/2 -translate-y-1/2 opacity-[0.08] hidden lg:block">
+        <CupidPup flip className="w-40 h-40" />
+      </div>
+      <div className="absolute right-4 sm:right-12 top-1/2 -translate-y-1/2 opacity-[0.08] hidden lg:block">
+        <CupidPup className="w-40 h-40" />
+      </div>
+
       <div className="text-center z-10 max-w-3xl mx-auto animate-fade-in">
         <p className="text-chocolate/60 text-sm tracking-[0.3em] uppercase font-serif mb-6">
-          Pobieramy si\u0119
+          Pobieramy się
         </p>
 
         <h1 className="font-hand text-7xl sm:text-8xl md:text-9xl text-cranberry mb-2 text-shadow">
@@ -43,25 +52,25 @@ export default function HeroSection() {
 
         <div className="flex items-center justify-center gap-2 mb-10 text-graphite/50">
           <MapPin className="w-4 h-4" />
-          <p className="font-serif">Ja\u0107mierz &bull; Nowotaniec</p>
+          <p className="font-serif">Jaćmierz • Nowotaniec</p>
         </div>
 
         <p className="font-serif text-lg sm:text-xl text-graphite/80 italic leading-relaxed max-w-xl mx-auto mb-12">
-          Mamy zaszczyt i ogromn\u0105 rado\u015b\u0107 zaprosi\u0107 Was na nasz \u015blub!
+          Mamy zaszczyt i ogromną radość zaprosić Was na nasz ślub!
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => scrollTo('rsvp')}
+            onClick={() => scrollTo('szczegoly')}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg"
           >
-            Potwierd\u017a obecno\u015b\u0107
+            Sprawdź detale
           </button>
           <button
-            onClick={() => scrollTo('szczegoly')}
+            onClick={() => scrollTo('stoliki')}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-cream border-2 border-chocolate/30 text-chocolate font-serif text-lg rounded-full hover:bg-chocolate/5 transition-colors"
           >
-            Zobacz szczeg\u00f3\u0142y
+            Znajdź swój stolik
           </button>
         </div>
       </div>

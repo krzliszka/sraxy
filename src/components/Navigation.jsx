@@ -5,9 +5,8 @@ import { Menu, X, Heart } from 'lucide-react';
 const NAV_SECTIONS = [
   { to: '#home', label: 'Start' },
   { to: '#historia', label: 'Nasza historia' },
-  { to: '#szczegoly', label: 'Szczeg\u00f3\u0142y' },
+  { to: '#szczegoly', label: 'Detale' },
   { to: '#prezenty', label: 'Prezenty' },
-  { to: '#galeria', label: 'Galeria' },
   { to: '#stoliki', label: 'Stoliki' },
 ];
 

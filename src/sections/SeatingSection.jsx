@@ -1,81 +1,41 @@
-import { useMemo, useState, useRef, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { Search, Users, MapPin } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 
-/*
- * Venue layout based on Dw\u00f3r Wola S\u0119kowa floor plan.
- *
- * Layout zones (approximate positions as % of floor plan container):
- *  - Main hall (left half): 4 tables + couple's table (2-M\u0141ODZI)
- *  - Dance floor (center)
- *  - Right wing: chillout zone + mini bar
- *  - Top: sweet table + rustic table
- *  - Bottom: main entrance
- */
-
 const TABLES = [
   {
-    id: '1',
-    label: 'St\u00f3\u0142 1',
-    seats: 10,
-    x: 13, y: 25,
-    zone: 'Sala g\u0142\u00f3wna',
-    guests: ['Go\u015b\u0107 1-1', 'Go\u015b\u0107 1-2', 'Go\u015b\u0107 1-3', 'Go\u015b\u0107 1-4', 'Go\u015b\u0107 1-5', 'Go\u015b\u0107 1-6', 'Go\u015b\u0107 1-7', 'Go\u015b\u0107 1-8', 'Go\u015b\u0107 1-9', 'Go\u015b\u0107 1-10'],
+    id: '1', label: 'Stół 1', seats: 10, x: 13, y: 25, zone: 'Sala główna',
+    guests: ['Gość 1-1', 'Gość 1-2', 'Gość 1-3', 'Gość 1-4', 'Gość 1-5', 'Gość 1-6', 'Gość 1-7', 'Gość 1-8', 'Gość 1-9', 'Gość 1-10'],
     shape: 'rect',
   },
   {
-    id: 'M',
-    label: 'Para M\u0142oda',
-    seats: 2,
-    x: 13, y: 48,
-    zone: 'Sala g\u0142\u00f3wna',
+    id: 'M', label: 'Para Młoda', seats: 2, x: 13, y: 48, zone: 'Sala główna',
     guests: ['Paula', 'Artur'],
-    shape: 'rect',
-    highlight: true,
+    shape: 'rect', highlight: true,
   },
   {
-    id: '2',
-    label: 'St\u00f3\u0142 2',
-    seats: 10,
-    x: 13, y: 70,
-    zone: 'Sala g\u0142\u00f3wna',
-    guests: ['Go\u015b\u0107 2-1', 'Go\u015b\u0107 2-2', 'Go\u015b\u0107 2-3', 'Go\u015b\u0107 2-4', 'Go\u015b\u0107 2-5', 'Go\u015b\u0107 2-6', 'Go\u015b\u0107 2-7', 'Go\u015b\u0107 2-8', 'Go\u015b\u0107 2-9', 'Go\u015b\u0107 2-10'],
+    id: '2', label: 'Stół 2', seats: 10, x: 13, y: 70, zone: 'Sala główna',
+    guests: ['Gość 2-1', 'Gość 2-2', 'Gość 2-3', 'Gość 2-4', 'Gość 2-5', 'Gość 2-6', 'Gość 2-7', 'Gość 2-8', 'Gość 2-9', 'Gość 2-10'],
     shape: 'rect',
   },
   {
-    id: '3',
-    label: 'St\u00f3\u0142 3',
-    seats: 14,
-    x: 30, y: 25,
-    zone: 'Sala g\u0142\u00f3wna',
-    guests: ['Go\u015b\u0107 3-1', 'Go\u015b\u0107 3-2', 'Go\u015b\u0107 3-3', 'Go\u015b\u0107 3-4', 'Go\u015b\u0107 3-5', 'Go\u015b\u0107 3-6', 'Go\u015b\u0107 3-7', 'Go\u015b\u0107 3-8', 'Go\u015b\u0107 3-9', 'Go\u015b\u0107 3-10', 'Go\u015b\u0107 3-11', 'Go\u015b\u0107 3-12', 'Go\u015b\u0107 3-13', 'Go\u015b\u0107 3-14'],
+    id: '3', label: 'Stół 3', seats: 14, x: 30, y: 25, zone: 'Sala główna',
+    guests: ['Gość 3-1', 'Gość 3-2', 'Gość 3-3', 'Gość 3-4', 'Gość 3-5', 'Gość 3-6', 'Gość 3-7', 'Gość 3-8', 'Gość 3-9', 'Gość 3-10', 'Gość 3-11', 'Gość 3-12', 'Gość 3-13', 'Gość 3-14'],
     shape: 'rect',
   },
   {
-    id: '4',
-    label: 'St\u00f3\u0142 4',
-    seats: 10,
-    x: 30, y: 70,
-    zone: 'Sala g\u0142\u00f3wna',
-    guests: ['Go\u015b\u0107 4-1', 'Go\u015b\u0107 4-2', 'Go\u015b\u0107 4-3', 'Go\u015b\u0107 4-4', 'Go\u015b\u0107 4-5', 'Go\u015b\u0107 4-6', 'Go\u015b\u0107 4-7', 'Go\u015b\u0107 4-8', 'Go\u015b\u0107 4-9', 'Go\u015b\u0107 4-10'],
+    id: '4', label: 'Stół 4', seats: 10, x: 30, y: 70, zone: 'Sala główna',
+    guests: ['Gość 4-1', 'Gość 4-2', 'Gość 4-3', 'Gość 4-4', 'Gość 4-5', 'Gość 4-6', 'Gość 4-7', 'Gość 4-8', 'Gość 4-9', 'Gość 4-10'],
     shape: 'rect',
   },
   {
-    id: '5',
-    label: 'St\u00f3\u0142 5',
-    seats: 15,
-    x: 52, y: 30,
-    zone: 'Przy parkiecie',
-    guests: ['Go\u015b\u0107 5-1', 'Go\u015b\u0107 5-2', 'Go\u015b\u0107 5-3', 'Go\u015b\u0107 5-4', 'Go\u015b\u0107 5-5', 'Go\u015b\u0107 5-6', 'Go\u015b\u0107 5-7', 'Go\u015b\u0107 5-8', 'Go\u015b\u0107 5-9', 'Go\u015b\u0107 5-10', 'Go\u015b\u0107 5-11', 'Go\u015b\u0107 5-12', 'Go\u015b\u0107 5-13', 'Go\u015b\u0107 5-14', 'Go\u015b\u0107 5-15'],
+    id: '5', label: 'Stół 5', seats: 15, x: 52, y: 30, zone: 'Przy parkiecie',
+    guests: ['Gość 5-1', 'Gość 5-2', 'Gość 5-3', 'Gość 5-4', 'Gość 5-5', 'Gość 5-6', 'Gość 5-7', 'Gość 5-8', 'Gość 5-9', 'Gość 5-10', 'Gość 5-11', 'Gość 5-12', 'Gość 5-13', 'Gość 5-14', 'Gość 5-15'],
     shape: 'rect',
   },
   {
-    id: '6',
-    label: 'St\u00f3\u0142 6',
-    seats: 10,
-    x: 82, y: 22,
-    zone: 'Strefa chillout',
-    guests: ['Go\u015b\u0107 6-1', 'Go\u015b\u0107 6-2', 'Go\u015b\u0107 6-3', 'Go\u015b\u0107 6-4', 'Go\u015b\u0107 6-5', 'Go\u015b\u0107 6-6', 'Go\u015b\u0107 6-7', 'Go\u015b\u0107 6-8', 'Go\u015b\u0107 6-9', 'Go\u015b\u0107 6-10'],
+    id: '6', label: 'Stół 6', seats: 10, x: 82, y: 22, zone: 'Strefa chillout',
+    guests: ['Gość 6-1', 'Gość 6-2', 'Gość 6-3', 'Gość 6-4', 'Gość 6-5', 'Gość 6-6', 'Gość 6-7', 'Gość 6-8', 'Gość 6-9', 'Gość 6-10'],
     shape: 'rect',
   },
 ];
@@ -95,39 +55,37 @@ export default function SeatingSection() {
   const active = found || selected;
 
   return (
-    <section id="stoliki" className="py-20 px-4 scroll-mt-20">
+    <section id="stoliki" className="py-20 px-4 bg-sage/15 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
-          tag="Rozk\u0142ad"
+          tag="Rozkład"
           title="Stoliki"
-          subtitle="Znajd\u017a swoje miejsce przy stole"
+          subtitle="Znajdź swoje miejsce przy stole"
         />
 
         <div className="grid lg:grid-cols-[1.3fr_0.7fr] gap-10 items-start">
-          {/* ============ FLOOR PLAN ============ */}
+          {/* Floor plan */}
           <div className="space-y-4">
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <h3 className="font-serif text-lg text-graphite font-medium">
                 <MapPin className="w-5 h-5 inline mr-2" />Mapa sali
               </h3>
               <span className="text-xs font-serif text-graphite/40 uppercase tracking-widest">
-                Kliknij st\u00f3\u0142, aby zobaczy\u0107 go\u015bci
+                Kliknij stół, aby zobaczyć gości
               </span>
             </div>
 
             <div className="relative bg-cream rounded-3xl border-2 border-chocolate/15 overflow-hidden shadow-sm" style={{ aspectRatio: '5/3.5' }}>
-              {/* === ZONES === */}
-
-              {/* Main hall outline (left) */}
+              {/* Main hall outline */}
               <div className="absolute border-2 border-chocolate/10 rounded-2xl bg-cream/50"
                 style={{ left: '2%', top: '8%', width: '43%', height: '84%' }} />
 
-              {/* Dance floor (center) */}
+              {/* Dance floor */}
               <div className="absolute rounded-2xl border-2 border-cranberry/20 bg-cranberry/5 flex items-center justify-center"
                 style={{ left: '42%', top: '35%', width: '22%', height: '40%' }}>
                 <div className="text-center">
                   <p className="font-serif text-[10px] sm:text-xs uppercase tracking-widest text-cranberry/50">Parkiet</p>
-                  <p className="font-hand text-lg sm:text-2xl text-cranberry">Do ta\u0144ca</p>
+                  <p className="font-hand text-lg sm:text-2xl text-cranberry">Do tańca</p>
                 </div>
               </div>
 
@@ -136,41 +94,41 @@ export default function SeatingSection() {
                 style={{ left: '68%', top: '8%', width: '30%', height: '84%' }}>
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center">
                   <p className="font-serif text-[10px] sm:text-xs text-sage/80 uppercase tracking-wider">Chillout zone</p>
-                  <p className="font-serif text-[9px] text-graphite/30">le\u017caki</p>
+                  <p className="font-serif text-[9px] text-graphite/30">leżaki</p>
                 </div>
               </div>
 
-              {/* Mini bar (top right) */}
+              {/* Mini bar */}
               <div className="absolute bg-chocolate/10 rounded-lg flex items-center justify-center"
                 style={{ left: '84%', top: '10%', width: '12%', height: '10%' }}>
                 <span className="font-serif text-[9px] sm:text-[10px] text-chocolate/50 text-center leading-tight">Mini<br/>bar</span>
               </div>
 
-              {/* Sweet table (top left) */}
+              {/* Słodki stół */}
               <div className="absolute bg-cranberry/8 rounded-lg flex items-center justify-center border border-cranberry/15"
                 style={{ left: '3%', top: '1%', width: '16%', height: '7%' }}>
-                <span className="font-serif text-[9px] sm:text-[10px] text-cranberry/60 text-center leading-tight">S\u0142odki<br/>st\u00f3\u0142</span>
+                <span className="font-serif text-[9px] sm:text-[10px] text-cranberry/60 text-center leading-tight">Słodki<br/>stół</span>
               </div>
 
-              {/* Rustic table (top center-left) */}
+              {/* Wiejski stół */}
               <div className="absolute bg-chocolate/8 rounded-lg flex items-center justify-center border border-chocolate/15"
                 style={{ left: '22%', top: '1%', width: '18%', height: '7%' }}>
-                <span className="font-serif text-[9px] sm:text-[10px] text-chocolate/60 text-center leading-tight">Wiejski<br/>st\u00f3\u0142</span>
+                <span className="font-serif text-[9px] sm:text-[10px] text-chocolate/60 text-center leading-tight">Wiejski<br/>stół</span>
               </div>
 
-              {/* Main entrance (bottom) */}
+              {/* Wejście */}
               <div className="absolute flex items-center justify-center"
                 style={{ left: '55%', bottom: '1%', width: '18%', height: '6%' }}>
-                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wej\u015bcie</span>
+                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wejście</span>
               </div>
 
-              {/* Main entrance 2 (bottom left) */}
+              {/* Wejście główne */}
               <div className="absolute flex items-center justify-center"
                 style={{ left: '10%', bottom: '1%', width: '24%', height: '6%' }}>
-                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wej\u015bcie g\u0142\u00f3wne</span>
+                <span className="font-serif text-[9px] sm:text-[10px] text-graphite/40 uppercase tracking-wider">Wejście główne</span>
               </div>
 
-              {/* === TABLE BUTTONS === */}
+              {/* Table buttons */}
               {TABLES.map((t) => {
                 const isActive = active?.id === t.id;
                 const isCouple = t.highlight;
@@ -193,7 +151,7 @@ export default function SeatingSection() {
                     aria-label={t.label}
                   >
                     <span className="font-serif text-xs sm:text-sm font-semibold leading-none">
-                      {isCouple ? 'M\u0141' : t.id}
+                      {isCouple ? 'MŁ' : t.id}
                     </span>
                     <span className={`text-[8px] sm:text-[10px] ${isActive ? 'text-cream/80' : isCouple ? 'text-cranberry/60' : 'text-graphite/40'}`}>
                       {t.seats} os.
@@ -207,11 +165,11 @@ export default function SeatingSection() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-serif text-graphite/50">
               <div className="flex items-center gap-2">
                 <div className="w-4 h-3 rounded border-2 border-cranberry/40 bg-cranberry/10" />
-                <span>Para M\u0142oda</span>
+                <span>Para Młoda</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-3 rounded border-2 border-chocolate/20 bg-cream" />
-                <span>Sto\u0142y go\u015bci</span>
+                <span>Stoły gości</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-4 h-3 rounded border-2 border-cranberry/20 bg-cranberry/5" />
@@ -224,7 +182,7 @@ export default function SeatingSection() {
             </div>
           </div>
 
-          {/* ============ SEARCH + GUEST LIST ============ */}
+          {/* Search + Guest list */}
           <div className="space-y-6">
             <div>
               <h3 className="font-serif text-lg text-graphite font-medium mb-4">
@@ -246,7 +204,7 @@ export default function SeatingSection() {
               )}
               {query.length >= 2 && !found && (
                 <p className="mt-2 font-serif text-sm text-graphite/60">
-                  Brak wyniku. Sprawd\u017a pisowni\u0119 lub skontaktuj si\u0119 z nami.
+                  Brak wyniku. Sprawdź pisownię lub skontaktuj się z nami.
                 </p>
               )}
             </div>
@@ -254,10 +212,10 @@ export default function SeatingSection() {
             {active ? (
               <div className="bg-sage/10 rounded-2xl p-5 border-2 border-sage/25">
                 <div className="text-center mb-4">
-                  <div className={`inline-block px-5 py-2 rounded-full font-serif font-bold text-base mb-1 ${active.highlight ? 'bg-cranberry text-cream' : 'bg-cranberry text-cream'}`}>
+                  <div className="inline-block px-5 py-2 rounded-full font-serif font-bold text-base mb-1 bg-cranberry text-cream">
                     {active.label}
                   </div>
-                  <p className="text-graphite/50 font-serif text-sm">{active.zone} &middot; {active.seats} miejsc</p>
+                  <p className="text-graphite/50 font-serif text-sm">{active.zone} · {active.seats} miejsc</p>
                 </div>
                 <div className="space-y-1.5 max-h-64 overflow-y-auto pr-1">
                   {active.guests.map((g, i) => (
@@ -277,7 +235,7 @@ export default function SeatingSection() {
             ) : (
               <div className="bg-sage/10 rounded-2xl p-8 text-center border-2 border-sage/25">
                 <p className="font-serif text-graphite/50 text-sm">
-                  Wybierz st\u00f3\u0142 na mapie lub wpisz nazwisko, aby zobaczy\u0107 rozk\u0142ad miejsc.
+                  Wybierz stół na mapie lub wpisz nazwisko, aby zobaczyć rozkład miejsc.
                 </p>
               </div>
             )}
@@ -289,14 +247,14 @@ export default function SeatingSection() {
           <h3 className="font-serif text-lg text-graphite font-medium mb-3">Informacje praktyczne</h3>
           <ul className="space-y-2 font-serif text-graphite/70 text-sm">
             {[
-              'Sto\u0142y s\u0105 prostokatne z miejscami dla ok. 50 go\u015bci',
-              'Twoje miejsce jest zarezerwowane \u2013 przyjed\u017a 30 minut przed ceremoni\u0105',
-              'S\u0142odki st\u00f3\u0142 i wiejski st\u00f3\u0142 dost\u0119pne dla wszystkich',
-              'Strefa chillout z le\u017cakami \u2013 idealna na przerw\u0119 od ta\u0144ca',
-              'W razie pyta\u0144 \u2013 zadzwo\u0144 do nas!',
+              'Stoły są prostokątne z miejscami dla ok. 50 gości',
+              'Twoje miejsce jest zarezerwowane – przyjedź 30 minut przed ceremonią',
+              'Słodki stół i wiejski stół dostępne dla wszystkich',
+              'Strefa chillout z leżakami – idealna na przerwę od tańca',
+              'W razie pytań – zadzwoń do nas!',
             ].map((txt) => (
               <li key={txt} className="flex items-start gap-3">
-                <span className="text-cranberry font-bold mt-0.5">&bull;</span>
+                <span className="text-cranberry font-bold mt-0.5">•</span>
                 <span>{txt}</span>
               </li>
             ))}
@@ -306,7 +264,7 @@ export default function SeatingSection() {
         {/* Contact */}
         <div className="mt-10 text-center bg-sage/15 rounded-2xl p-8">
           <h3 className="font-hand text-3xl text-cranberry mb-3">Pytania?</h3>
-          <p className="font-serif text-graphite/60 text-sm mb-5">Skontaktuj si\u0119 z nami:</p>
+          <p className="font-serif text-graphite/60 text-sm mb-5">Skontaktuj się z nami:</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             {[
               { name: 'Paula', phone: '504-444-866', tel: '+48504444866' },

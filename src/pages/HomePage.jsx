@@ -4,9 +4,7 @@ import HeroSection from '../sections/HeroSection';
 import CountdownSection from '../sections/CountdownSection';
 import StorySection from '../sections/StorySection';
 import DetailsSection from '../sections/DetailsSection';
-import RSVPSection from '../sections/RSVPSection';
 import GiftsSection from '../sections/GiftsSection';
-import GallerySection from '../sections/GallerySection';
 import SeatingSection from '../sections/SeatingSection';
 
 const PASSWORD = 'Megera';
@@ -27,7 +25,7 @@ export default function HomePage() {
       setAuthed(true);
       setErr('');
     } else {
-      setErr('Niepoprawne has\u0142o. Spr\u00f3buj ponownie.');
+      setErr('Niepoprawne hasło. Spróbuj ponownie.');
     }
   };
 
@@ -37,7 +35,7 @@ export default function HomePage() {
         <div className="text-center px-4 w-full max-w-sm">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Sparkles className="w-4 h-4 text-chocolate/40" />
-            <span className="text-chocolate/60 text-xs tracking-[0.3em] uppercase font-serif">Pobieramy si\u0119</span>
+            <span className="text-chocolate/60 text-xs tracking-[0.3em] uppercase font-serif">Pobieramy się</span>
             <Sparkles className="w-4 h-4 text-chocolate/40" />
           </div>
           <h1 className="font-hand text-6xl sm:text-7xl text-cranberry mb-8">Paula & Artur</h1>
@@ -45,13 +43,13 @@ export default function HomePage() {
             <input
               type="password"
               className="w-full px-6 py-3 rounded-full border-2 border-chocolate/20 text-center text-lg font-serif focus:outline-none focus:border-cranberry/50 bg-cream text-chocolate shadow"
-              placeholder="Has\u0142o dost\u0119pu"
+              placeholder="Hasło dostępu"
               value={pw}
               onChange={(e) => setPw(e.target.value)}
               autoFocus
             />
             <button type="submit" className="w-full px-8 py-3 bg-cranberry text-cream font-serif text-lg rounded-full hover:bg-cranberry/90 transition-colors shadow-lg">
-              Wejd\u017a
+              Wejdź
             </button>
             {err && <p className="text-red-600 text-sm font-serif">{err}</p>}
           </form>
@@ -66,10 +64,8 @@ export default function HomePage() {
       <CountdownSection />
       <StorySection />
       <DetailsSection />
-      <RSVPSection />
       <GiftsSection />
       <SeatingSection />
-      <GallerySection />
     </>
   );
 }

@@ -1,48 +1,41 @@
 import { useEffect, useRef, useState } from 'react';
 import { Heart } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
-
-/*
- * Scrollytelling timeline: each chapter has a photo placeholder,
- * year, title and description. As you scroll, chapters fade-in
- * one by one with parallax-like transitions.
- *
- * Replace `photo` paths with real images in public/photos/story/
- */
+import CupidPup from '../components/CupidPup';
 
 const CHAPTERS = [
   {
     year: '2018',
     title: 'Pierwsze spotkanie',
-    desc: 'Tutaj mo\u017cecie opisa\u0107, jak si\u0119 poznali\u015bcie\u2026 Mo\u017ce to by\u0142a przypadkowa sytuacja? A mo\u017ce kto\u015b Was sobie przedstawi\u0142?',
+    desc: 'Tutaj możecie opisać, jak się poznaliście… Może to była przypadkowa sytuacja? A może ktoś Was sobie przedstawił?',
     photo: '/photos/story/1.jpg',
     side: 'left',
   },
   {
     year: '2019',
     title: 'Pierwsza randka',
-    desc: 'Opowiedzcie o Waszej pierwszej randce\u2026 Dok\u0105d poszli\u015bcie? Co jedli\u015bcie? Kto si\u0119 sp\u00f3\u017ani\u0142?',
+    desc: 'Opowiedzcie o Waszej pierwszej randce… Dokąd poszliście? Co jedliście? Kto się spóźnił?',
     photo: '/photos/story/2.jpg',
     side: 'right',
   },
   {
     year: '2021',
-    title: 'Wsp\u00f3lne mieszkanie',
-    desc: 'Kiedy zamieszkali\u015bcie razem\u2026 Jak wygl\u0105da\u0142 pierwszy wsp\u00f3lny poranek? Kto gotowa\u0142, a kto zmywa\u0142?',
+    title: 'Wspólne mieszkanie',
+    desc: 'Kiedy zamieszkaliście razem… Jak wyglądał pierwszy wspólny poranek? Kto gotował, a kto zmywał?',
     photo: '/photos/story/3.jpg',
     side: 'left',
   },
   {
     year: '2024',
-    title: 'Zar\u0119czyny',
-    desc: 'Opowiedzcie o zar\u0119czynach\u2026 Gdzie si\u0119 to sta\u0142o? Czy by\u0142a niespodzianka?',
+    title: 'Zaręczyny',
+    desc: 'Opowiedzcie o zaręczynach… Gdzie się to stało? Czy była niespodzianka?',
     photo: '/photos/story/4.jpg',
     side: 'right',
   },
   {
     year: '2026',
-    title: '\u015alub!',
-    desc: 'I wreszcie nadszed\u0142 ten wyczekiwany dzie\u0144\u2026 Ca\u0142a historia doprowadzi\u0142a nas tutaj \u2013 i cieszymy si\u0119, \u017ce jeste\u015bcie z nami!',
+    title: 'Ślub!',
+    desc: 'I wreszcie nadszedł ten wyczekiwany dzień… Cała historia doprowadziła nas tutaj – i cieszymy się, że jesteście z nami!',
     photo: '/photos/story/5.jpg',
     side: 'left',
     highlight: true,
@@ -53,16 +46,15 @@ const PEOPLE = [
   {
     name: 'Paula',
     initial: 'P',
-    desc: 'Tu mo\u017cecie doda\u0107 kr\u00f3tki opis o Pauli \u2013 jej pasje, zainteresowania, czym si\u0119 zajmuje\u2026',
+    desc: 'Tu możecie dodać krótki opis o Pauli – jej pasje, zainteresowania, czym się zajmuje…',
   },
   {
     name: 'Artur',
     initial: 'A',
-    desc: 'Tu mo\u017cecie doda\u0107 kr\u00f3tki opis o Arturze \u2013 jego pasje, zainteresowania, czym si\u0119 zajmuje\u2026',
+    desc: 'Tu możecie dodać krótki opis o Arturze – jego pasje, zainteresowania, czym się zajmuje…',
   },
 ];
 
-/* Hook: returns true once the element scrolls into the viewport */
 function useInView(ref, threshold = 0.25) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -101,21 +93,16 @@ function ScrollChapter({ chapter, index }) {
             bg-sage/20
           `}
         >
-          {/* Placeholder \u2013 remove this div once real photos are added */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <Heart className={`w-10 h-10 mx-auto mb-2 ${chapter.highlight ? 'text-cranberry fill-cranberry' : 'text-chocolate/20'}`} />
-              <p className="font-serif text-sm text-chocolate/30">Zdj\u0119cie {index + 1}</p>
+              <p className="font-serif text-sm text-chocolate/30">Zdjęcie {index + 1}</p>
               <p className="font-serif text-xs text-chocolate/20 mt-1">{chapter.photo}</p>
             </div>
           </div>
           {/*
             Uncomment when real photos exist:
-            <img
-              src={chapter.photo}
-              alt={chapter.title}
-              className="w-full h-full object-cover"
-            />
+            <img src={chapter.photo} alt={chapter.title} className="w-full h-full object-cover" />
           */}
         </div>
       </div>
@@ -148,7 +135,7 @@ export default function StorySection() {
         <SectionHeader
           tag="O nas"
           title="Nasza Historia"
-          subtitle="Ka\u017cda wielka historia mi\u0142osna ma sw\u00f3j pocz\u0105tek. Oto nasza\u2026"
+          subtitle="Każda wielka historia miłosna ma swój początek. Oto nasza…"
         />
 
         {/* About us cards */}
@@ -167,7 +154,7 @@ export default function StorySection() {
         {/* Scrollytelling timeline */}
         <div className="mb-24">
           <h3 className="font-hand text-4xl sm:text-5xl text-cranberry text-center mb-16">
-            Nasza podr\u00f3\u017c
+            Nasza podróż
           </h3>
 
           <div className="space-y-20 md:space-y-28">
@@ -177,15 +164,22 @@ export default function StorySection() {
           </div>
         </div>
 
+        {/* Cupid pup divider */}
+        <div className="flex items-center justify-center gap-6 mb-12">
+          <CupidPup flip className="w-14 h-14 text-chocolate/20" />
+          <Heart className="w-5 h-5 text-cranberry/30 fill-cranberry/30" />
+          <CupidPup className="w-14 h-14 text-chocolate/20" />
+        </div>
+
         {/* Quote */}
         <div className="text-center">
           <svg className="w-10 h-10 mx-auto text-cranberry/25 mb-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
           </svg>
           <p className="font-serif text-2xl sm:text-3xl text-graphite/70 italic leading-relaxed mb-4 max-w-2xl mx-auto">
-            &ldquo;Mi\u0142o\u015b\u0107 nie polega na tym, \u017ceby patrze\u0107 na siebie nawzajem, lecz \u017ceby patrze\u0107 razem w tym samym kierunku.&rdquo;
+            „Miłość nie polega na tym, żeby patrzeć na siebie nawzajem, lecz żeby patrzeć razem w tym samym kierunku."
           </p>
-          <p className="font-serif text-graphite/40">&mdash; Antoine de Saint-Exup\u00e9ry</p>
+          <p className="font-serif text-graphite/40">— Antoine de Saint-Exupéry</p>
         </div>
       </div>
     </section>
