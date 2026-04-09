@@ -9,7 +9,7 @@ const TABLES = [
     shape: 'rect',
   },
   {
-    id: 'M', label: 'Młoda  Para', seats: 2, x: 13, y: 48,
+    id: 'M', label: 'Para Młoda', seats: 2, x: 13, y: 48,
     guests: ['Paula', 'Artur'],
     shape: 'rect', highlight: true,
   },
@@ -141,7 +141,7 @@ export default function SeatingSection() {
                     aria-label={t.label}
                   >
                     <span className="font-serif text-xs sm:text-sm font-semibold leading-none">
-                      {isCouple ? 'Młodzi' : t.id}
+                      {isCouple ? 'Para Młoda' : t.id}
                     </span>
                     <span className={`text-[8px] sm:text-[14px] ${isActive ? 'text-cream/80' : isCouple ? 'text-cranberry/60' : 'text-graphite/40'}`}>
                       {t.seats} os.

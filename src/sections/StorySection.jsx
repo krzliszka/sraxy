@@ -134,7 +134,7 @@ export default function StorySection() {
         <SectionHeader
           // tag="O nas"
           title="Nasza Historia"
-          subtitle="Każda wielka historia miłosna ma swój początek. Oto nasza…"
+          // subtitle="Jak to się właściwie zaczęło?"
         />
 
         {/* About us cards */}
@@ -153,7 +153,7 @@ export default function StorySection() {
         {/* Scrollytelling timeline */}
         <div className="mb-24">
           <h3 className="font-hand text-4xl sm:text-5xl text-cranberry text-center mb-16">
-            Nasza podróż
+            Jak to się właściwie zaczęło?
           </h3>
 
           <div className="space-y-20 md:space-y-28">
