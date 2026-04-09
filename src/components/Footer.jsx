@@ -1,10 +1,22 @@
 import { Heart } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollTo = (e, hash) => {
     e.preventDefault();
     const el = document.getElementById(hash);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const target = document.getElementById(hash);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   const links = [
@@ -14,6 +26,11 @@ export default function Footer() {
     { id: 'prezenty', label: 'Prezenty' },
     { id: 'stoliki', label: 'Stoliki' },
     { id: 'pokoje', label: 'Pokoje' },
+    { id: 'zdjecia', label: 'Zdjęcia' },
+  ];
+
+  const pageLinks = [
+    { to: '/zaproszenie', label: 'Zaproszenie' },
   ];
 
   return (
@@ -39,6 +56,15 @@ export default function Footer() {
             >
               {l.label}
             </a>
+          ))}
+          {pageLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className="font-serif text-sm text-graphite/50 hover:text-cranberry transition-colors"
+            >
+              {l.label}
+            </Link>
           ))}
         </div>
 

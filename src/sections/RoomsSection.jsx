@@ -231,7 +231,7 @@ export default function RoomsSection() {
             <X className="w-8 h-8" />
           </button>
           <img
-            src="public/pok.jpg"
+            src={`${import.meta.env.BASE_URL}pok.jpg`}
             alt="Plan pokoi – Dwór Wola Sękowa"
             className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}

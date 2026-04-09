@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Heart } from 'lucide-react';
 
 const NAV_SECTIONS = [
@@ -21,12 +21,23 @@ export default function Navigation() {
   const [active, setActive] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollTo = (e, hash) => {
     e.preventDefault();
     setOpen(false);
-    const el = document.getElementById(hash.replace('#', ''));
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const id = hash.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (location.pathname !== '/') {
+      // On a sub-page — navigate home, then scroll to the section
+      navigate('/');
+      setTimeout(() => {
+        const target = document.getElementById(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   useEffect(() => {
