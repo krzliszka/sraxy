@@ -8,47 +8,47 @@ const CHAPTERS = [
     // year: '2018',
     // title: 'Pierwsze spotkanie',
     desc: 'Oficjalna wersja ich poznania brzmi całkiem romantycznie, choć zaczyna się od klasycznej katastrofy logistycznej. Był listopad, jakieś święto, wszystko wyprzedane, a Paula utknęła w Rzeszowie bez najmniejszej szansy na powrót do Krakowa. Pociągi pełne, busy pełne — standard. I wtedy przypomniała sobie słowa Arka: „Jakby co, mam kolegę, który też studiuje w Krakowie, może kiedyś Cię podrzuci".',
-    photo: '/photos/story/26.PNG',
+    photo: '/photos/story/26.webp',
     side: 'left',
   },
   {
     // year: '2019',
     // title: 'Pierwsza randka',
     desc: 'No więc napisała. A tym kolegą okazał się Artur. Zgodził się ją zabrać, choć — jak później przyznał — nie był tym pomysłem szczególnie zachwycony. Pojechali. A właściwie: stali. Cztery godziny w korku na autostradzie, po jakimś wypadku. Cztery godziny niezręcznej ciszy. Idealny początek znajomości, prawda? Nieoficjalnie widzieli się jednak wcześniej. Kiedyś Arek odbierał od Pauli paczkę, a Artur przyjechał z nim na rowerze. Tyle że wtedy nikt nie połączył faktów — życie lubi takie małe żarty.',
-    photo: '/photos/story/25.PNG',
+    photo: '/photos/story/25.webp',
     side: 'right',
   },
   {
     // year: '2021',
     // title: 'Wspólne mieszkanie',
     desc: 'Pierwsze wrażenia? Paula pomyślała, że Artur jest trochę dziwny, ale sympatyczny. On natomiast zwrócił na nią uwagę od razu. Coś więc musiało zaskoczyć szybciej niż ich rozmowa w samochodzie. Pierwszy ruch też należał do niego, choć w dość nieoczywistej formie. Gdy Paula zapytała, ile ma oddać za paliwo, Artur odparł, że może… pouczyć go chemii. Czy to był sprytny plan, czy czysta improwizacja — nie wiadomo. Wiadomo tylko, że zadziałało.',
-    photo: '/photos/story/40.PNG',
+    photo: '/photos/story/40.webp',
     side: 'left',
   },
   {
     // year: '2024',
     // title: 'Zaręczyny',
     desc: 'I tak to leci już ponad siedem lat. A skoro ich historia zaczęła się od wspólnej podróży — trochę przypadkowej, trochę wymuszonej — to nic dziwnego, że z czasem podróże stały się ich znakiem rozpoznawczym. Od krótkich wypadów po Polsce, przez spontaniczne wyjazdy, aż po te większe, planowane z mapą i kubkiem kawy w ręku.',
-    photo: '/photos/story/16.PNG',
+    photo: '/photos/story/16.webp',
     side: 'right',
   },
   {
     // year: '2026',
     // title: 'Ślub!',
     desc: 'Każda z nich zostawiła po sobie jakiś ślad: zdjęcie, wspomnienie, anegdotę, którą można opowiadać przy stole. I właśnie kilka takich momentów chcemy Wam pokazać…',
-    photo: '/photos/story/31.PNG',
+    photo: '/photos/story/31.webp',
     side: 'left',
     // highlight: true,
   },
 ];
 
 const GALLERY_PHOTOS = [
-  { src: '/photos/gallery/20.PNG', alt: 'Galeria 1' },
-  { src: '/photos/gallery/28.PNG', alt: 'Galeria 2' },
-  { src: '/photos/gallery/32.PNG', alt: 'Galeria 3' },
-  { src: '/photos/gallery/39.PNG', alt: 'Galeria 4' },
-  { src: '/photos/gallery/44.PNG', alt: 'Galeria 5' },
-  { src: '/photos/gallery/45.PNG', alt: 'Galeria 6' },
+  { src: '/photos/gallery/20.webp', alt: 'Galeria 1' },
+  { src: '/photos/gallery/28.webp', alt: 'Galeria 2' },
+  { src: '/photos/gallery/32.webp', alt: 'Galeria 3' },
+  { src: '/photos/gallery/39.webp', alt: 'Galeria 4' },
+  { src: '/photos/gallery/44.webp', alt: 'Galeria 5' },
+  { src: '/photos/gallery/45.webp', alt: 'Galeria 6' },
 ];
 
 const PEOPLE = [
