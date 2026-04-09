@@ -264,12 +264,6 @@ export default function PhotoUploadSection() {
                 >
                   Spróbuj ponownie
                 </button>
-                <a
-                  href="tel:+48504444866"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-cream border-2 border-chocolate/20 text-chocolate font-serif rounded-full hover:bg-chocolate/5 transition-colors"
-                >
-                  Zadzwoń do Pauli
-                </a>
               </div>
             </div>
           )}
