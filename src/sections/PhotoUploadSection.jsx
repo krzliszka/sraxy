@@ -186,10 +186,10 @@ export default function PhotoUploadSection() {
                   <div className="p-8 border-2 border-dashed border-chocolate/20 rounded-2xl">
                     <Upload className="w-10 h-10 text-chocolate/25 mx-auto mb-3" />
                     <p className="font-serif text-graphite/50 text-sm">
-                      Funkcja przesyłania zdjęć będzie dostępna w dniu ślubu
+                      Funkcję przesyłania zdjęć zjadł pies, ale będzie dostępna w dniu ślubu
                     </p>
                   </div>
-                  <p className="font-serif text-xs text-graphite/30">#PaulaIArtur2026</p>
+                  {/* <p className="font-serif text-xs text-graphite/30">#PaulaIArtur2026</p> */}
                 </div>
               )}
             </>
@@ -213,7 +213,7 @@ export default function PhotoUploadSection() {
               </div>
 
               <p className="font-serif text-graphite/50 text-sm">
-                Proszę nie zamykać strony…
+                Proszę nie zamykać strony
               </p>
             </div>
           )}
