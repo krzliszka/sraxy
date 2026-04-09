@@ -36,11 +36,11 @@ export default function Footer() {
   return (
     <footer className="py-16 px-4 border-t border-chocolate/10">
       <div className="max-w-4xl mx-auto text-center">
-        {/* Winged dogs (cupid pups) + heart */}
-        <div className="flex items-center justify-center gap-6 mb-6">
-          <Heart className="w-5 h-5 text-cranberry/40 fill-cranberry/40" />
-          <Heart className="w-6 h-6 text-cranberry fill-cranberry" />
-          <Heart className="w-5 h-5 text-cranberry/40 fill-cranberry/40" />
+        {/* Winged dogs (cupid pups) facing each other */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <img src="/megera.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain -scale-x-100" />
+          <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
+          <img src="/megera.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain" />
         </div>
 
         <p className="font-hand text-4xl text-cranberry mb-2">Do zobaczenia!</p>
