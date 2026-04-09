@@ -38,9 +38,9 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto text-center">
         {/* Winged dogs (cupid pups) facing each other */}
         <div className="flex items-center justify-center gap-4 mb-6">
-          <img src="/megera.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain -scale-x-100" />
+          <img src="/megera2.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain" />
           <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
-          <img src="/megera.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain" />
+          <img src="/megera2.jpg" alt="Megerka amorek" className="w-20 h-20 object-contain -scale-x-100" />
         </div>
 
         <p className="font-hand text-4xl text-cranberry mb-2">Do zobaczenia!</p>
