@@ -1,5 +1,4 @@
 import { Heart, Church, Wine, Phone, MapPin, Clock, Calendar, Utensils, Car, Gift, X } from 'lucide-react';
-import CupidPup from '../components/CupidPup';
 
 function DetailCard({ icon, title, children }) {
   return (
@@ -53,7 +52,6 @@ export default function InvitationPage() {
             <span className="w-14 h-px bg-chocolate/30" />
           </div>
           <div className="flex items-center justify-center gap-3 mb-8">
-            <Calendar className="w-5 h-5 text-chocolate" />
             <p className="text-2xl sm:text-3xl md:text-4xl font-serif text-graphite tracking-wide">11.04.2026</p>
           </div>
           <p className="text-lg sm:text-xl text-graphite/80 font-serif italic leading-relaxed px-4">
@@ -180,9 +178,9 @@ export default function InvitationPage() {
       <footer className="py-16 px-4 bg-cream border-t border-chocolate/10">
         <div className="max-w-2xl mx-auto text-center">
           <div className="flex items-center justify-center gap-6 mb-6">
-            <CupidPup flip className="w-14 h-14 text-chocolate/40" />
+            <Heart className="w-5 h-5 text-cranberry/40 fill-cranberry/40" />
             <Heart className="w-6 h-6 text-cranberry fill-cranberry" />
-            <CupidPup className="w-14 h-14 text-chocolate/40" />
+            <Heart className="w-5 h-5 text-cranberry/40 fill-cranberry/40" />
           </div>
           <p className="font-hand text-3xl sm:text-4xl text-cranberry mb-2">Do zobaczenia!</p>
           <p className="font-hand text-2xl text-chocolate">Paula & Artur</p>

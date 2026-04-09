@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Heart } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
-import CupidPup from '../components/CupidPup';
 
 const CHAPTERS = [
   {
@@ -46,12 +45,12 @@ const PEOPLE = [
   {
     name: 'Paula',
     initial: 'P',
-    desc: 'Tu możecie dodać krótki opis o Pauli – jej pasje, zainteresowania, czym się zajmuje…',
+    desc: 'Na codzień doktorantka Biologii na Uniwersytecie Jagiellońskim. Kocha podróżować, robić zdjęcia i wykonywać rzeczy ręcznie, ale przede wszystkim kocha Artura i Megere.',
   },
   {
     name: 'Artur',
     initial: 'A',
-    desc: 'Tu możecie dodać krótki opis o Arturze – jego pasje, zainteresowania, czym się zajmuje…',
+    desc: 'Na codzień poważny inżynier konstruktor. Jego pasja to przede wszystkim spacerowanie z Megerką, jazda rowerem oraz podróże i denerwowanie Pauli.',
   },
 ];
 
@@ -133,7 +132,7 @@ export default function StorySection() {
     <section id="historia" className="py-20 px-4 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          tag="O nas"
+          // tag="O nas"
           title="Nasza Historia"
           subtitle="Każda wielka historia miłosna ma swój początek. Oto nasza…"
         />
@@ -164,13 +163,6 @@ export default function StorySection() {
           </div>
         </div>
 
-        {/* Cupid pup divider */}
-        <div className="flex items-center justify-center gap-6 mb-12">
-          <CupidPup flip className="w-14 h-14 text-chocolate/20" />
-          <Heart className="w-5 h-5 text-cranberry/30 fill-cranberry/30" />
-          <CupidPup className="w-14 h-14 text-chocolate/20" />
-        </div>
-
         {/* Quote */}
         <div className="text-center">
           <svg className="w-10 h-10 mx-auto text-cranberry/25 mb-4" viewBox="0 0 24 24" fill="currentColor">
@@ -180,6 +172,11 @@ export default function StorySection() {
             „Miłość nie polega na tym, żeby patrzeć na siebie nawzajem, lecz żeby patrzeć razem w tym samym kierunku."
           </p>
           <p className="font-serif text-graphite/40">— Antoine de Saint-Exupéry</p>
+          <div className="flex items-center justify-center gap-3 mt-10">
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
+            <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
+          </div>
         </div>
       </div>
     </section>

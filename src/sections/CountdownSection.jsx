@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Heart } from 'lucide-react';
 
 const WEDDING = new Date('2026-04-11T15:30:00');
 
@@ -38,6 +39,11 @@ export default function CountdownSection() {
               <p className="font-serif text-graphite/60 mt-1 text-sm">{item.label}</p>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center gap-3 mt-10">
+          <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
+          <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+          <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
         </div>
       </div>
     </section>

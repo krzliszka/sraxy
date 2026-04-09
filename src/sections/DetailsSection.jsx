@@ -1,4 +1,4 @@
-import { Church, Wine, MapPin, Clock, Calendar, Car, ExternalLink } from 'lucide-react';
+import { Church, Wine, MapPin, Clock, Calendar, Car, ExternalLink, Heart } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
 
 const VENUES = [
@@ -37,7 +37,7 @@ export default function DetailsSection() {
     <section id="szczegoly" className="py-20 px-4 bg-sage/15 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
         <SectionHeader
-          tag="Informacje"
+          // tag="Informacje"
           title="Detale"
           subtitle="Wszystko, co musicie wiedzieć o naszym wielkim dniu."
         />
@@ -123,6 +123,30 @@ export default function DetailsSection() {
                 Jeśli potrzebujecie pomocy z transportem lub chcecie się zorganizować z innymi gośćmi, skontaktujcie się z nami.
               </p>
             </div>
+          </div>
+        </div>
+        {/* Contact */}
+        <div className="mt-10 text-center bg-sage/15 rounded-2xl p-8">
+          <h3 className="font-hand text-3xl text-cranberry mb-3">Pytania?</h3>
+          <p className="font-serif text-graphite/60 text-sm mb-5">Skontaktuj się z nami:</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            {[
+              { name: 'Paula', phone: '504-444-866', tel: '+48504444866' },
+              { name: 'Artur', phone: '792-512-711', tel: '+48792512711' },
+            ].map((c) => (
+              <a
+                key={c.name}
+                href={`tel:${c.tel}`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-cream border-2 border-chocolate/20 rounded-full text-chocolate hover:bg-chocolate/5 transition-colors font-serif text-sm"
+              >
+                {c.name}: {c.phone}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center justify-center gap-3 mt-10">
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
+            <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ const NAV_SECTIONS = [
   { to: '#szczegoly', label: 'Detale' },
   { to: '#prezenty', label: 'Prezenty' },
   { to: '#stoliki', label: 'Stoliki' },
+  { to: '#pokoje', label: 'Pokoje' },
+  { to: '#zdjecia', label: 'Zdjęcia' },
 ];
 
 const NAV_PAGES = [

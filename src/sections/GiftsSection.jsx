@@ -24,7 +24,7 @@ export default function GiftsSection() {
     <section id="prezenty" className="py-20 px-4 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
         <SectionHeader
-          tag="Prezenty"
+          // tag="Prezenty"
           title="Sroki już ćwierkają..."
           subtitle="Wasze pytania o prezenty nie umknęły naszej uwadze."
         />
@@ -63,10 +63,10 @@ export default function GiftsSection() {
             Pamiętajcie jednak, że Wasza obecność jest dla nas najważniejsza.
             Chcemy dzielić ten dzień z ludźmi, których kochamy.
           </p> */}
-          <div className="flex items-center justify-center gap-3 mt-6">
-            <Heart className="w-4 h-4 text-cranberry/40 fill-cranberry/40" />
-            <Heart className="w-5 h-5 text-cranberry fill-cranberry" />
-            <Heart className="w-4 h-4 text-cranberry/40 fill-cranberry/40" />
+          <div className="flex items-center justify-center gap-3 mt-10">
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
+            <Heart className="w-5 h-5 text-cranberry/50 fill-cranberry/50" />
+            <Heart className="w-4 h-4 text-cranberry/30 fill-cranberry/30" />
           </div>
         </div>
       </div>

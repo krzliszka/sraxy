@@ -1,5 +1,4 @@
 import { Heart, Calendar, MapPin } from 'lucide-react';
-import CupidPup from '../components/CupidPup';
 
 export default function HeroSection() {
   const scrollTo = (id) => {
@@ -20,13 +19,6 @@ export default function HeroSection() {
         <div key={cls} className={`absolute w-14 h-14 border-chocolate/20 hidden sm:block ${cls}`} />
       ))}
 
-      {/* Cupid pups decoration - flanking the hero */}
-      <div className="absolute left-4 sm:left-12 top-1/2 -translate-y-1/2 opacity-[0.08] hidden lg:block">
-        <CupidPup flip className="w-40 h-40" />
-      </div>
-      <div className="absolute right-4 sm:right-12 top-1/2 -translate-y-1/2 opacity-[0.08] hidden lg:block">
-        <CupidPup className="w-40 h-40" />
-      </div>
 
       <div className="text-center z-10 max-w-3xl mx-auto animate-fade-in">
         <p className="text-chocolate/60 text-sm tracking-[0.3em] uppercase font-serif mb-6">
@@ -44,14 +36,12 @@ export default function HeroSection() {
         </div>
 
         <div className="flex items-center justify-center gap-3 mb-4">
-          <Calendar className="w-5 h-5 text-chocolate" />
           <p className="text-3xl sm:text-4xl md:text-5xl font-serif text-graphite tracking-wide">
             11.04.2026
           </p>
         </div>
 
         <div className="flex items-center justify-center gap-2 mb-10 text-graphite/50">
-          <MapPin className="w-4 h-4" />
           <p className="font-serif">Jaćmierz • Nowotaniec</p>
         </div>
 

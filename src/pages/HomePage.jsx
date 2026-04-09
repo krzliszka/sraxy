@@ -6,6 +6,8 @@ import StorySection from '../sections/StorySection';
 import DetailsSection from '../sections/DetailsSection';
 import GiftsSection from '../sections/GiftsSection';
 import SeatingSection from '../sections/SeatingSection';
+import RoomsSection from '../sections/RoomsSection';
+import PhotoUploadSection from '../sections/PhotoUploadSection';
 
 const PASSWORD = 'Megera';
 
@@ -66,6 +68,8 @@ export default function HomePage() {
       <DetailsSection />
       <GiftsSection />
       <SeatingSection />
+      <RoomsSection />
+      <PhotoUploadSection />
     </>
   );
 }
