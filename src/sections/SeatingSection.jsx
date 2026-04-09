@@ -4,7 +4,7 @@ import SectionHeader from '../components/SectionHeader';
 
 const TABLES = [
   {
-    id: '1', label: 'Stół 1', seats: 10, x: 13, y: 25, zone: 'Sala główna',
+    id: '4', label: 'Stół 4', seats: 10, x: 13, y: 25, zone: 'Sala główna',
     guests: ['Test', 'Gość 1-2', 'Gość 1-3', 'Gość 1-4', 'Gość 1-5', 'Gość 1-6', 'Gość 1-7', 'Gość 1-8', 'Gość 1-9', 'Gość 1-10'],
     shape: 'rect',
   },
@@ -24,7 +24,7 @@ const TABLES = [
     shape: 'rect',
   },
   {
-    id: '4', label: 'Stół 4', seats: 10, x: 34, y: 70, zone: 'Sala główna',
+    id: '1', label: 'Stół 1', seats: 10, x: 34, y: 70, zone: 'Sala główna',
     guests: ['Gość 4-1', 'Gość 4-2', 'Gość 4-3', 'Gość 4-4', 'Gość 4-5', 'Gość 4-6', 'Gość 4-7', 'Gość 4-8', 'Gość 4-9', 'Gość 4-10'],
     shape: 'rect',
   },
