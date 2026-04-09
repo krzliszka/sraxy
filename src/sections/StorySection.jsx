@@ -108,14 +108,14 @@ function ScrollChapter({ chapter, index }) {
 
       {/* Text */}
       <div className="w-full md:w-1/2 text-center md:text-left">
-        <span
+        {/* <span
           className={`
             inline-block px-4 py-1 rounded-full font-serif text-sm mb-3
             ${chapter.highlight ? 'bg-cranberry/10 text-cranberry font-semibold' : 'bg-sage/20 text-chocolate/60'}
           `}
         >
-          {/* {chapter.year} */}
-        </span>
+          {chapter.year}
+        </span> */}
         <h3
           className={`font-hand text-4xl sm:text-5xl mb-4 ${chapter.highlight ? 'text-cranberry' : 'text-graphite'}`}
         >

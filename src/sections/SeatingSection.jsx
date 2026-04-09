@@ -77,12 +77,12 @@ export default function SeatingSection() {
               </div>
 
               {/* Right wing - Chillout */}
-              {/* <div className="absolute border-2 border-sage/30 rounded-2xl bg-sage/10"
+              <div className="absolute border-2 border-sage/30 rounded-2xl bg-sage/10"
                 style={{ left: '68%', top: '4%', width: '30%', height: '88%' }}>
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center">
-                  <p className="font-serif text-[14px] sm:text-xs text-sage/80 uppercase tracking-wider">Chillout zone</p>
+                  {/* <p className="font-serif text-[14px] sm:text-xs text-sage/80 uppercase tracking-wider">Chillout zone</p> */}
                 </div>
-              </div> */}
+              </div>
 
               <div className="absolute bg-chocolate/10 rounded-lg flex items-center justify-center"
                 style={{ left: '72%', top: '10%', width: '22%', height: '20%' }}>
