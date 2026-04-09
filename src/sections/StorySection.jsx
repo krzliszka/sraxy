@@ -108,7 +108,7 @@ function ScrollChapter({ chapter, index, onPhotoOpen }) {
       <div className="w-full md:w-1/2 flex-shrink-0">
         <div
           className={`
-            relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg
+            relative aspect-[9/10] rounded-3xl overflow-hidden shadow-lg
             border-2 ${chapter.highlight ? 'border-cranberry/30' : 'border-chocolate/10'}
             bg-sage/20
           `}
@@ -156,7 +156,7 @@ function GalleryItem({ photo, onOpen }) {
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
       `}
     >
-      <div className="relative aspect-[4/3]">
+      <div className="relative aspect-[9/10]">
         <ClickablePhoto
           src={photo.src}
           alt={photo.alt}
