@@ -149,7 +149,7 @@ export default function RoomsSection() {
               <div className={`inline-flex items-center gap-2 px-5 py-2 rounded-full font-serif font-bold text-base bg-cranberry text-cream`}>
                 <BedDouble className="w-4 h-4" />
                 Pokój {active.id}
-                {active.highlight && <span className="text-cream/70 font-normal text-sm">· Para Młoda</span>}
+                {active.highlight && <span className="text-cream/70 font-normal text-sm">· Młoda Para </span>}
               </div>
             </div>
 
@@ -267,7 +267,7 @@ function RoomCard({ room, isActive, onClick, align }) {
       <div className={`flex items-center gap-2 mb-1.5 ${align === 'right' ? 'justify-end' : 'justify-start'}`}>
         <DoorOpen className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-cranberry' : isCouple ? 'text-cranberry/60' : 'text-chocolate/40'}`} />
         <span className={`font-serif text-sm font-semibold ${isActive || isCouple ? 'text-cranberry' : 'text-graphite'}`}>
-          {isCouple ? 'Para Młoda' : `Pokój ${room.id}`}
+          {isCouple ? 'Młoda Para' : `Pokój ${room.id}`}
         </span>
       </div>
 

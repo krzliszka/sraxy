@@ -36,9 +36,7 @@ export default function HomePage() {
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-cream stripe-pattern">
         <div className="text-center px-4 w-full max-w-sm">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <Sparkles className="w-4 h-4 text-chocolate/40" />
             <span className="text-chocolate/60 text-xs tracking-[0.3em] uppercase font-serif">Pobieramy się</span>
-            <Sparkles className="w-4 h-4 text-chocolate/40" />
           </div>
           <h1 className="font-hand text-6xl sm:text-7xl text-cranberry mb-8">Paula & Artur</h1>
           <form onSubmit={login} className="flex flex-col items-center gap-4">

@@ -9,7 +9,7 @@ const TABLES = [
     shape: 'rect',
   },
   {
-    id: 'M', label: 'Para Młoda', seats: 2, x: 13, y: 48,
+    id: 'M', label: 'Młoda  Para', seats: 2, x: 13, y: 48,
     guests: ['Paula', 'Artur'],
     shape: 'rect', highlight: true,
   },
@@ -20,7 +20,7 @@ const TABLES = [
   },
   {
     id: '3', label: 'Stół 3', seats: 15, x: 34, y: 25, zone: 'Sala główna',
-    guests: ['Gość 3-1', 'Gość 3-2', 'Gość 3-3', 'Gość 3-4', 'Gość 3-5', 'Gość 3-6', 'Gość 3-7', 'Gość 3-8', 'Gość 3-9', 'Gość 3-10', 'Gość 3-11', 'Gość 3-12', 'Gość 3-13', 'Gość 3-14'],
+    guests: ['Maria Sroka', 'Janusz Sroka', 'Kasia Sroka', 'Agnieszka Rumak', 'Bartosz Rumak', 'Amadeusz Rumak', 'Oktawia Rumak', 'Andrzej Sroka', 'Beata Sroka', 'Michał Sroka', 'Tomasz Sroka', 'Katarzyna Sitek', 'Zofia Sitek', 'Piotr Staryszak', 'Jakub Ochoński'],
     shape: 'rect',
   },
   {
