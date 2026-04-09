@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Heart, Church, Wine, Phone, MapPin, Clock, Calendar, Utensils, Car, Gift, X } from 'lucide-react';
 
 function DetailCard({ icon, title, children }) {
@@ -17,9 +18,12 @@ function DetailCard({ icon, title, children }) {
 }
 
 export default function InvitationPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const goHome = () => {
-    window.location.href = '/sraxy/#/';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.href = `${import.meta.env.BASE_URL}#/`;
   };
 
   return (
