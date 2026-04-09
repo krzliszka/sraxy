@@ -2,15 +2,24 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import InvitationPage from './pages/InvitationPage';
-import PhotoPage from './pages/PhotoPage';
+import PhotoUploadSection from './sections/PhotoUploadSection';
 
 export default function App() {
   return (
     <HashRouter>
       <Routes>
-        {/* Standalone pages (no nav, no password) */}
+        {/* Invitation - standalone page */}
         <Route path="/zaproszenie" element={<InvitationPage />} />
-        <Route path="/zdjecia" element={<PhotoPage />} />
+
+        {/* Photo upload - with full navigation, accessible via QR code */}
+        <Route
+          path="/zdjecia"
+          element={
+            <Layout>
+              <PhotoUploadSection />
+            </Layout>
+          }
+        />
 
         {/* Main landing page with all sections */}
         <Route
