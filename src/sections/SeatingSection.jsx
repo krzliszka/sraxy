@@ -24,8 +24,8 @@ const TABLES = [
     shape: 'rect',
   },
   {
-    id: '1', label: 'Stół 1', seats: 10, x: 34, y: 70, zone: 'Sala główna',
-    guests: ['Gość 4-1', 'Gość 4-2', 'Gość 4-3', 'Gość 4-4', 'Gość 4-5', 'Gość 4-6', 'Gość 4-7', 'Gość 4-8', 'Gość 4-9', 'Gość 4-10'],
+    id: '1', label: 'Stół 1', seats: 8, x: 34, y: 70, zone: 'Sala główna',
+    guests: ['Gość 1-1', 'Gość 1-2', 'Gość 1-3', 'Gość 1-4', 'Gość 1-5', 'Gość 1-6', 'Gość 1-7', 'Gość 1-8'],
     shape: 'rect',
   },
 ];
