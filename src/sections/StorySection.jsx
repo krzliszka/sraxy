@@ -8,7 +8,7 @@ const CHAPTERS = [
     // year: '2018',
     // title: 'Pierwsze spotkanie',
     desc: 'Oficjalna wersja ich poznania brzmi całkiem romantycznie, choć zaczyna się od klasycznej katastrofy logistycznej. Był listopad, jakieś święto, wszystko wyprzedane, a Paula utknęła w Rzeszowie bez najmniejszej szansy na powrót do Krakowa. Pociągi pełne, busy pełne — standard.',
-    photo: '/photos/story/1.jpg',
+    photo: '/photos/story/16.jpg',
     side: 'left',
   },
   {
@@ -29,7 +29,7 @@ const CHAPTERS = [
     year: '2024',
     title: 'Zaręczyny',
     desc: 'Opowiedzcie o zaręczynach… Gdzie się to stało? Czy była niespodzianka?',
-    photo: '/photos/story/4.jpg',
+    photo: '/photos/story/16.PNG',
     side: 'right',
   },
   {
