@@ -13,7 +13,7 @@ const CHAPTERS = [
   {
     year: '2019',
     // title: 'Pierwsza randka',
-    desc: 'Opowiedzcie o Waszej pierwszej randce… Dokąd poszliście? Co jedliście? Kto się spóźnił?',
+    desc: 'I wtedy przypomniała sobie słowa Arka: „Jakby co, mam kolegę, który też studiuje w Krakowie, może kiedyś Cię podrzuci”. No więc napisała. A tym kolegą okazał się Artur. Zgodził się ją zabrać, choć — jak później przyznał — nie był tym pomysłem szczególnie zachwycony. Pojechali. A właściwie: stali. Cztery godziny w korku na autostradzie, po jakimś wypadku. Cztery godziny niezręcznej ciszy. Idealny początek znajomości, prawda?',
     photo: '/photos/story/2.jpg',
     side: 'right',
   },
@@ -114,7 +114,7 @@ function ScrollChapter({ chapter, index }) {
             ${chapter.highlight ? 'bg-cranberry/10 text-cranberry font-semibold' : 'bg-sage/20 text-chocolate/60'}
           `}
         >
-          {chapter.year}
+          {/* {chapter.year} */}
         </span>
         <h3
           className={`font-hand text-4xl sm:text-5xl mb-4 ${chapter.highlight ? 'text-cranberry' : 'text-graphite'}`}
