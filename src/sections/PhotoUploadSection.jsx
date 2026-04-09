@@ -73,7 +73,7 @@ import SectionHeader from '../components/SectionHeader';
  */
 
 // ↓↓↓ WKLEJ TUTAJ URL SWOJEGO GOOGLE APPS SCRIPT ↓↓↓
-const UPLOAD_SCRIPT_URL = '';
+const UPLOAD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZC-IP0J0s07eNIS2up0LBcJGC_9Mt-3wgzsoCs5SVJAcfFInkVzeiKKcLmBVYgLY/exec';
 // ↑↑↑ np. 'https://script.google.com/macros/s/AKfycb.../exec' ↑↑↑
 
 export default function PhotoUploadSection() {
