@@ -4,15 +4,15 @@ import SectionHeader from '../components/SectionHeader';
 
 const CHAPTERS = [
   {
-    year: '2018',
-    title: 'Pierwsze spotkanie',
-    desc: 'Tutaj możecie opisać, jak się poznaliście… Może to była przypadkowa sytuacja? A może ktoś Was sobie przedstawił?',
+    // year: '2018',
+    // title: 'Pierwsze spotkanie',
+    desc: 'Oficjalna wersja ich poznania brzmi całkiem romantycznie, choć zaczyna się od klasycznej katastrofy logistycznej. Był listopad, jakieś święto, wszystko wyprzedane, a Paula utknęła w Rzeszowie bez najmniejszej szansy na powrót do Krakowa. Pociągi pełne, busy pełne — standard.',
     photo: '/photos/story/1.jpg',
     side: 'left',
   },
   {
     year: '2019',
-    title: 'Pierwsza randka',
+    // title: 'Pierwsza randka',
     desc: 'Opowiedzcie o Waszej pierwszej randce… Dokąd poszliście? Co jedliście? Kto się spóźnił?',
     photo: '/photos/story/2.jpg',
     side: 'right',
