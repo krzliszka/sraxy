@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Heart } from 'lucide-react';
 import SectionHeader from '../components/SectionHeader';
+import Lightbox from '../components/Lightbox';
 
 const CHAPTERS = [
   {
@@ -13,7 +14,7 @@ const CHAPTERS = [
   {
     year: '2019',
     // title: 'Pierwsza randka',
-    desc: 'I wtedy przypomniała sobie słowa Arka: „Jakby co, mam kolegę, który też studiuje w Krakowie, może kiedyś Cię podrzuci”. No więc napisała. A tym kolegą okazał się Artur. Zgodził się ją zabrać, choć — jak później przyznał — nie był tym pomysłem szczególnie zachwycony. Pojechali. A właściwie: stali. Cztery godziny w korku na autostradzie, po jakimś wypadku. Cztery godziny niezręcznej ciszy. Idealny początek znajomości, prawda?',
+    desc: 'I wtedy przypomniała sobie słowa Arka: „Jakby co, mam kolegę, który też studiuje w Krakowie, może kiedyś Cię podrzuci". No więc napisała. A tym kolegą okazał się Artur. Zgodził się ją zabrać, choć — jak później przyznał — nie był tym pomysłem szczególnie zachwycony. Pojechali. A właściwie: stali. Cztery godziny w korku na autostradzie, po jakimś wypadku. Cztery godziny niezręcznej ciszy. Idealny początek znajomości, prawda?',
     photo: '/photos/story/2.jpg',
     side: 'right',
   },
@@ -39,6 +40,15 @@ const CHAPTERS = [
     side: 'left',
     highlight: true,
   },
+];
+
+const GALLERY_PHOTOS = [
+  { src: '/photos/gallery/1.jpg', alt: 'Galeria 1' },
+  { src: '/photos/gallery/2.jpg', alt: 'Galeria 2' },
+  { src: '/photos/gallery/3.jpg', alt: 'Galeria 3' },
+  { src: '/photos/gallery/4.jpg', alt: 'Galeria 4' },
+  { src: '/photos/gallery/5.jpg', alt: 'Galeria 5' },
+  { src: '/photos/gallery/6.jpg', alt: 'Galeria 6' },
 ];
 
 const PEOPLE = [
@@ -68,7 +78,18 @@ function useInView(ref, threshold = 0.25) {
   return visible;
 }
 
-function ScrollChapter({ chapter, index }) {
+function ClickablePhoto({ src, alt, className, onOpen }) {
+  return (
+    <img
+      src={src}
+      alt={alt || ''}
+      className={`${className} cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
+      onClick={() => onOpen(src, alt)}
+    />
+  );
+}
+
+function ScrollChapter({ chapter, index, onPhotoOpen }) {
   const ref = useRef(null);
   const visible = useInView(ref, 0.2);
   const isRight = chapter.side === 'right';
@@ -101,7 +122,12 @@ function ScrollChapter({ chapter, index }) {
           </div>
           {/*
             Uncomment when real photos exist:
-            <img src={chapter.photo} alt={chapter.title} className="w-full h-full object-cover" />
+            <ClickablePhoto
+              src={chapter.photo}
+              alt={chapter.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              onOpen={onPhotoOpen}
+            />
           */}
         </div>
       </div>
@@ -127,7 +153,48 @@ function ScrollChapter({ chapter, index }) {
   );
 }
 
+function GalleryItem({ photo, onOpen }) {
+  const ref = useRef(null);
+  const visible = useInView(ref, 0.15);
+
+  return (
+    <div
+      ref={ref}
+      className={`
+        overflow-hidden rounded-2xl shadow-md border border-chocolate/10 bg-sage/20
+        transition-all duration-700 ease-out
+        ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+      `}
+    >
+      <div className="relative aspect-[4/3]">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Heart className="w-8 h-8 text-chocolate/15" />
+        </div>
+        {/*
+          Uncomment when real photos exist:
+          <ClickablePhoto
+            src={photo.src}
+            alt={photo.alt}
+            className="w-full h-full object-cover"
+            onOpen={onOpen}
+          />
+        */}
+      </div>
+    </div>
+  );
+}
+
 export default function StorySection() {
+  const [lightbox, setLightbox] = useState(null);
+
+  const openLightbox = useCallback((src, alt) => {
+    setLightbox({ src, alt });
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightbox(null);
+  }, []);
+
   return (
     <section id="historia" className="py-20 px-4 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
@@ -158,7 +225,19 @@ export default function StorySection() {
 
           <div className="space-y-20 md:space-y-28">
             {CHAPTERS.map((ch, i) => (
-              <ScrollChapter key={i} chapter={ch} index={i} />
+              <ScrollChapter key={i} chapter={ch} index={i} onPhotoOpen={openLightbox} />
+            ))}
+          </div>
+        </div>
+
+        {/* Photo gallery */}
+        <div className="mb-24">
+          <h3 className="font-hand text-4xl sm:text-5xl text-cranberry text-center mb-12">
+            Galeria
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {GALLERY_PHOTOS.map((photo, i) => (
+              <GalleryItem key={i} photo={photo} onOpen={openLightbox} />
             ))}
           </div>
         </div>
@@ -179,6 +258,10 @@ export default function StorySection() {
           </div>
         </div>
       </div>
+
+      {lightbox && (
+        <Lightbox src={lightbox.src} alt={lightbox.alt} onClose={closeLightbox} />
+      )}
     </section>
   );
 }
