@@ -5,7 +5,7 @@ import SectionHeader from '../components/SectionHeader';
 const TABLES = [
   {
     id: '3', label: 'Stół 3', seats: 10, x: 13, y: 25, zone: 'Sala główna',
-    guests: ['Test', 'Gość 1-2', 'Gość 1-3', 'Gość 1-4', 'Gość 1-5', 'Gość 1-6', 'Gość 1-7', 'Gość 1-8', 'Gość 1-9', 'Gość 1-10'],
+    guests: ['Joanna Sobieraj', 'Jakub Krajmas', 'Jolanta Styś', 'Michał Styś', 'Ola Kościelna', 'Ernest Łuczak', 'Julia Starostka', 'Miłosz Wrzesień', 'Gabriela Jarosz', 'Jakub Ajersch'],
     shape: 'rect',
   },
   {
@@ -15,7 +15,7 @@ const TABLES = [
   },
   {
     id: '2', label: 'Stół 2', seats: 10, x: 13, y: 70, zone: 'Sala główna',
-    guests: ['Gość 2-1', 'Gość 2-2', 'Gość 2-3', 'Gość 2-4', 'Gość 2-5', 'Gość 2-6', 'Gość 2-7', 'Gość 2-8', 'Gość 2-9', 'Gość 2-10'],
+    guests: ['Barbara Malinowska', 'Błażej Sikończyk', 'Justyna Pleskacz', 'Arek Kogut', 'Krzysiek Liszka', 'Michał Rozmund', 'Bartłomiej Serafinowski', 'Oliwia Szkraba', 'Patrycja Synowiec', 'Daniel Gucwa'],
     shape: 'rect',
   },
   {
@@ -25,7 +25,7 @@ const TABLES = [
   },
   {
     id: '1', label: 'Stół 1', seats: 8, x: 34, y: 70, zone: 'Sala główna',
-    guests: ['Gość 1-1', 'Gość 1-2', 'Gość 1-3', 'Gość 1-4', 'Gość 1-5', 'Gość 1-6', 'Gość 1-7', 'Gość 1-8'],
+    guests: ['Magdalena Ajersch', 'Janusz Ajersch', 'Małgorzata Bułatek', 'Halina Walas', 'Wojciech Borciuch', 'Joanna Drozd', 'Oskar Mazgaj', 'Katarzyna Thorpe'],
     shape: 'rect',
   },
 ];

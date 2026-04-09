@@ -12,14 +12,20 @@ import SectionHeader from '../components/SectionHeader';
  *  2. Wklej poniższy kod do pliku Code.gs:
  *
  *     ─────────────────────────────────────────────────────────
+ *     // ID folderu na Google Drive – skopiuj z URL folderu
+ *     // https://drive.google.com/drive/folders/TWOJ_FOLDER_ID
+ *     var FOLDER_ID = 'TWOJ_FOLDER_ID';
+ *
+ *     function doGet(e) {
+ *       return ContentService
+ *         .createTextOutput(JSON.stringify({ status: 'ok', message: 'Upload endpoint działa!' }))
+ *         .setMimeType(ContentService.MimeType.JSON);
+ *     }
+ *
  *     function doPost(e) {
  *       try {
  *         var data = JSON.parse(e.postData.contents);
- *
- *         // ID folderu na Google Drive – skopiuj z URL folderu
- *         // https://drive.google.com/drive/folders/TWOJ_FOLDER_ID
- *         var folderId = 'TWOJ_FOLDER_ID';
- *         var folder = DriveApp.getFolderById(folderId);
+ *         var folder = DriveApp.getFolderById(FOLDER_ID);
  *
  *         var blob = Utilities.newBlob(
  *           Utilities.base64Decode(data.image),
@@ -104,16 +110,17 @@ export default function PhotoUploadSection() {
         });
 
         // Send to Google Apps Script
-        await fetch(UPLOAD_SCRIPT_URL, {
+        // Note: no Content-Type header to avoid CORS preflight
+        const resp = await fetch(UPLOAD_SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             image: base64,
             mimeType: file.type,
             fileName: `wesele_${Date.now()}_${file.name}`,
           }),
         });
+
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
 
         successCount++;
       } catch (err) {
