@@ -113,22 +113,12 @@ function ScrollChapter({ chapter, index, onPhotoOpen }) {
             bg-sage/20
           `}
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <Heart className={`w-10 h-10 mx-auto mb-2 ${chapter.highlight ? 'text-cranberry fill-cranberry' : 'text-chocolate/20'}`} />
-              <p className="font-serif text-sm text-chocolate/30">Zdjęcie {index + 1}</p>
-              <p className="font-serif text-xs text-chocolate/20 mt-1">{chapter.photo}</p>
-            </div>
-          </div>
-          {/*
-            Uncomment when real photos exist:
-            <ClickablePhoto
-              src={chapter.photo}
-              alt={chapter.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              onOpen={onPhotoOpen}
-            />
-          */}
+          <ClickablePhoto
+            src={chapter.photo}
+            alt={chapter.title || `Zdjęcie ${index + 1}`}
+            className="absolute inset-0 w-full h-full object-cover"
+            onOpen={onPhotoOpen}
+          />
         </div>
       </div>
 
@@ -167,18 +157,12 @@ function GalleryItem({ photo, onOpen }) {
       `}
     >
       <div className="relative aspect-[4/3]">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <Heart className="w-8 h-8 text-chocolate/15" />
-        </div>
-        {/*
-          Uncomment when real photos exist:
-          <ClickablePhoto
-            src={photo.src}
-            alt={photo.alt}
-            className="w-full h-full object-cover"
-            onOpen={onOpen}
-          />
-        */}
+        <ClickablePhoto
+          src={photo.src}
+          alt={photo.alt}
+          className="w-full h-full object-cover"
+          onOpen={onOpen}
+        />
       </div>
     </div>
   );
