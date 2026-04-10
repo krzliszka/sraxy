@@ -157,7 +157,6 @@ export default function PhotoUploadSection() {
             type="file"
             accept="image/*,video/*"
             multiple
-            capture="environment"
             onChange={handleFiles}
             className="hidden"
             id="photo-upload-input"
