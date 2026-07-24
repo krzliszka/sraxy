@@ -1,6 +1,5 @@
 
 You are an expert UI/UX Designer and Frontend Developer specialized in creating elegant, responsive wedding websites. Create a beautiful **single-page wedding landing page** using **React + Vite + Tailwind CSS**, deployed to **GitHub Pages**. The site should feel premium, romantic, and refined — like a digital invitation.
-
 ---
 
 ## Tech Stack
